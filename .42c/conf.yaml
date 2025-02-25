@@ -1,0 +1,3 @@
+apis:
+  docs/api-specification.yaml:
+    alias: event-management-api

@@ -7,9 +7,29 @@ info:
     включающей регистрацию, аутентификацию, бронирование, продажу билетов, работу с профилем пользователя и уведомления.
 servers:
   - url: https://api.example.com/api/v1
+security:
+  - bearerAuth: []
+tags:
+  - name: users
+    description: Работа с пользователями
+  - name: admin
+    description: Работа с администраторами
+  - name: events
+    description: Работа с мероприятиями
+  - name: bookings
+    description: Работа с бронированиями
+  - name: tickets
+    description: Работа с билетами
+  - name: notifications
+    description: Работа с уведомлениями
+  - name: reports
+    description: Работа с отчетами
 paths:
   /auth/register:
     post:
+      security: []
+      tags:
+        - users
       summary: Регистрация пользователя
       description: Регистрация нового пользователя в системе.
       requestBody:
@@ -21,13 +41,19 @@ paths:
               properties:
                 name:
                   type: string
+                  maxLength: 100
+                  pattern: "^[A-Za-zА-Яа-яЁё\\s-]+$"
                   example: "Иван Иванов"
                 email:
                   type: string
                   format: email
+                  maxLength: 255
+                  pattern: "^[\\w\\.-]+@[\\w\\.-]+\\.\\w{2,}$"
                   example: "ivan@example.com"
                 password:
                   type: string
+                  maxLength: 128
+                  pattern: "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
                   example: "securePassword123"
               required:
                 - name
@@ -43,14 +69,23 @@ paths:
                 properties:
                   userId:
                     type: string
+                    maxLength: 50
+                    pattern: "^[a-zA-Z0-9]+$"
+                    example: "user123"
                   message:
                     type: string
+                    maxLength: 200
                     example: "User registered successfully."
         '400':
           description: Некорректные входные данные
+        '409':
+          description: Пользователь с таким именем уже зарегистрирован
 
   /auth/login:
     post:
+      security: []
+      tags:
+        - users
       summary: Вход пользователя
       description: Аутентификация пользователя и выдача JWT токена.
       requestBody:
@@ -63,9 +98,13 @@ paths:
                 email:
                   type: string
                   format: email
+                  maxLength: 255
+                  pattern: "^[\\w\\.-]+@[\\w\\.-]+\\.\\w{2,}$"
                   example: "ivan@example.com"
                 password:
                   type: string
+                  maxLength: 128
+                  pattern: "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
                   example: "securePassword123"
               required:
                 - email
@@ -78,15 +117,66 @@ paths:
               schema:
                 type: object
                 properties:
-                  token:
+                  access_token:
                     type: string
-                  user:
-                    $ref: '#/components/schemas/User'
+                    maxLength: 500
+                    pattern: "^[A-Za-z0-9\\-_\\.]+$"
+                    description: Bearer Token для дальнейшей аутентификации
+                    example: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9..."
+                  refresh_token:
+                    type: string
+                    maxLength: 500
+                    pattern: "^[A-Za-z0-9\\-_\\.]+$"
+                    description: Refresh Token для обновления токена
+                    example: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9..."
         '401':
           description: Неверные учетные данные
+        '500':
+          description: Ошибка сервера
+
+  /auth/login/refresh:
+    post:
+      security: []
+      tags:
+        - users
+      summary: Обновление токена
+      description: Обновление токена с помощью Refresh Token.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refresh_token:
+                  type: string
+                  maxLength: 500
+                  pattern: "^[A-Za-z0-9\\-_\\.]+$"
+                  example: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9..."
+              required:
+                - refresh_token
+      responses:
+        '200':
+          description: Токен успешно обновлен
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    maxLength: 500
+                    pattern: "^[A-Za-z0-9\\-_\\.]+$"
+                    description: Bearer Token для дальнейшей аутентификации
+                    example: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9..."
+        '401':
+          description: Неверный Refresh Token
 
   /events:
     get:
+      security: []
+      tags:
+        - events
       summary: Получение списка мероприятий
       description: Возвращает список публичных мероприятий.
       responses:
@@ -96,19 +186,43 @@ paths:
             application/json:
               schema:
                 type: array
+                maxItems: 100
                 items:
                   $ref: '#/components/schemas/Event'
 
+  /events/preview:
+    get:
+      security: []
+      tags:
+        - events
+      summary: Получение списка мероприятий с кратким описанием
+      description: Возвращает список публичных мероприятий с кратким описанием.
+      responses:
+        '200':
+          description: Список мероприятий
+          content:
+            application/json:
+              schema:
+                type: array
+                maxItems: 100
+                items:
+                  $ref: '#/components/schemas/EventPreview'
+
   /events/{eventId}:
     get:
+      security: []
+      tags:
+        - events
       summary: Получение информации о мероприятии
       description: Возвращает подробную информацию о выбранном мероприятии.
       parameters:
         - in: path
           name: eventId
+          required: true
           schema:
             type: string
-          required: true
+            maxLength: 50
+            pattern: "^[a-zA-Z0-9]+$"
           description: Идентификатор мероприятия
       responses:
         '200':
@@ -120,8 +234,36 @@ paths:
         '404':
           description: Мероприятие не найдено
 
+  /events/{eventId}/hall:
+    get:
+      security: []
+      tags:
+        - events
+      summary: Получение информации о зале
+      description: Возвращает информацию о зале выбранного мероприятия.
+      parameters:
+        - in: path
+          name: eventId
+          required: true
+          schema:
+            type: string
+            maxLength: 50
+            pattern: "^[a-zA-Z0-9]+$"
+          description: Идентификатор мероприятия
+      responses:
+        '200':
+          description: Информация о зале
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Hall'
+        '404':
+          description: Зал не найден
+  
   /bookings:
     post:
+      tags:
+        - bookings
       summary: Создание бронирования
       description: Создает бронирование для выбранного мероприятия.
       requestBody:
@@ -133,11 +275,15 @@ paths:
               properties:
                 eventId:
                   type: string
+                  maxLength: 50
+                  pattern: "^[a-zA-Z0-9]+$"
                   example: "event123"
                 seats:
                   type: array
+                  maxItems: 20
                   items:
                     type: string
+                    maxLength: 10
                   example: ["A1", "A2"]
               required:
                 - eventId
@@ -152,12 +298,19 @@ paths:
                 properties:
                   bookingId:
                     type: string
+                    maxLength: 50
+                    pattern: "^[a-zA-Z0-9]+$"
+                    example: "booking123"
                   status:
                     type: string
+                    maxLength: 20
+                    pattern: "^(pending|confirmed|cancelled)$"
                     example: "pending"
         '400':
           description: Некорректные данные бронирования
     get:
+      tags:
+        - bookings
       summary: Получение списка бронирований
       description: Возвращает список бронирований для текущего пользователя.
       responses:
@@ -167,19 +320,24 @@ paths:
             application/json:
               schema:
                 type: array
+                maxItems: 100
                 items:
                   $ref: '#/components/schemas/Booking'
 
   /bookings/{bookingId}:
     get:
+      tags:
+        - bookings
       summary: Получение деталей бронирования
       description: Возвращает подробности выбранного бронирования.
       parameters:
         - in: path
           name: bookingId
+          required: true
           schema:
             type: string
-          required: true
+            maxLength: 50
+            pattern: "^[a-zA-Z0-9]+$"
           description: Идентификатор бронирования
       responses:
         '200':
@@ -193,6 +351,8 @@ paths:
 
   /tickets:
     post:
+      tags:
+        - tickets
       summary: Покупка билета
       description: Генерирует билет на основе подтвержденного бронирования.
       requestBody:
@@ -204,6 +364,8 @@ paths:
               properties:
                 bookingId:
                   type: string
+                  maxLength: 50
+                  pattern: "^[a-zA-Z0-9]+$"
                   example: "booking123"
               required:
                 - bookingId
@@ -217,12 +379,19 @@ paths:
                 properties:
                   ticketId:
                     type: string
+                    maxLength: 50
+                    pattern: "^[a-zA-Z0-9]+$"
+                    example: "ticket789"
                   ticketCode:
                     type: string
+                    maxLength: 100
+                    pattern: "^[A-Za-z0-9]+$"
                     example: "QR123456789"
         '400':
           description: Некорректные данные бронирования или неподтвержденное бронирование
     get:
+      tags:
+        - tickets
       summary: Получение списка билетов
       description: Возвращает список билетов текущего пользователя.
       responses:
@@ -232,11 +401,14 @@ paths:
             application/json:
               schema:
                 type: array
+                maxItems: 100
                 items:
                   $ref: '#/components/schemas/Ticket'
 
   /users/profile:
     get:
+      tags:
+        - users
       summary: Получение профиля пользователя
       description: Возвращает данные профиля текущего пользователя.
       responses:
@@ -247,6 +419,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/User'
     put:
+      tags:
+        - users
       summary: Обновление профиля пользователя
       description: Обновляет данные профиля текущего пользователя.
       requestBody:
@@ -265,8 +439,257 @@ paths:
         '400':
           description: Некорректные входные данные
 
+  /admin/users:
+    get:
+      tags:
+        - admin
+      summary: Получение списка пользователей
+      description: Возвращает список всех пользователей.
+      responses:
+        '200':
+          description: Список пользователей
+          content:
+            application/json:
+              schema:
+                type: array
+                maxItems: 1000
+                items:
+                  $ref: '#/components/schemas/User'
+
+  /admin/users/{userId}:
+    get:
+      tags:
+        - admin
+      summary: Получение информации о пользователе
+      description: Возвращает подробную информацию о выбранном пользователе.
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+            maxLength: 50
+            pattern: "^[a-zA-Z0-9]+$"
+          description: Идентификатор пользователя
+      responses:
+        '200':
+          description: Детальная информация о пользователе
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: Пользователь не найден
+
+  /admin/events:
+    get:
+      tags:
+        - admin
+      summary: Получение списка мероприятий
+      description: Возвращает список всех мероприятий.
+      responses:
+        '200':
+          description: Список мероприятий
+          content:
+            application/json:
+              schema:
+                type: array
+                maxItems: 1000
+                items:
+                  $ref: '#/components/schemas/Event'
+    post:
+      tags:
+        - admin
+      summary: Создание мероприятия
+      description: Создает новое мероприятие.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+      responses:
+        '201':
+          description: Мероприятие успешно создано
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '400':
+          description: Некорректные данные мероприятия
+
+  /admin/events/{eventId}:
+    get:
+      tags:
+        - admin
+      summary: Получение информации о мероприятии
+      description: Возвращает подробную информацию о выбранном мероприятии.
+      parameters:
+        - in: path
+          name: eventId
+          required: true
+          schema:
+            type: string
+            maxLength: 50
+            pattern: "^[a-zA-Z0-9]+$"
+          description: Идентификатор мероприятия
+      responses:
+        '200':
+          description: Детальная информация о мероприятии
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '404':
+          description: Мероприятие не найдено
+    put:
+      tags:
+        - admin
+      summary: Обновление мероприятия
+      description: Обновляет данные выбранного мероприятия.
+      parameters:
+        - in: path
+          name: eventId
+          required: true
+          schema:
+            type: string
+            maxLength: 50
+            pattern: "^[a-zA-Z0-9]+$"
+          description: Идентификатор мероприятия
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+      responses:
+        '200':
+          description: Мероприятие успешно обновлено
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '400':
+          description: Некорректные данные мероприятия
+        '404':
+          description: Мероприятие не найдено
+    delete:
+      tags:
+        - admin
+      summary: Удаление мероприятия
+      description: Удаляет выбранное мероприятие.
+      parameters:
+        - in: path
+          name: eventId
+          required: true
+          schema:
+            type: string
+            maxLength: 50
+            pattern: "^[a-zA-Z0-9]+$"
+          description: Идентификатор мероприятия
+      responses:
+        '200':
+          description: Мероприятие успешно удалено
+        '404':
+          description: Мероприятие не найдено
+
+  /admin/reports:
+    get:
+      tags:
+        - reports
+      summary: Получение отчета
+      description: Возвращает отчет о прибыли за определенный период.
+      parameters:
+        - in: query
+          name: startDate
+          required: true
+          schema:
+            type: string
+            format: date-time
+          description: Начальная дата периода
+        - in: query
+          name: endDate
+          required: true
+          schema:
+            type: string
+            format: date-time
+          description: Конечная дата периода
+      responses:
+        '200':
+          description: Отчет о прибыли
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportPeriod'
+
+  /admin/reports/events:
+    get:
+      tags:
+        - reports
+      summary: Получение отчета по мероприятиям
+      description: Возвращает отчет о прибыли по каждому мероприятию за определенный период.
+      parameters:
+        - in: query
+          name: startDate
+          required: true
+          schema:
+            type: string
+            format: date-time
+          description: Начальная дата периода
+        - in: query
+          name: endDate
+          required: true
+          schema:
+            type: string
+            format: date-time
+          description: Конечная дата периода
+      responses:
+        '200':
+          description: Отчет о прибыли по мероприятиям
+          content:
+            application/json:
+              schema:
+                type: array
+                maxItems: 1000
+                items:
+                  $ref: '#/components/schemas/ReportEvent'
+
+  /admin/reports/users:
+    get:
+      tags:
+        - reports
+      summary: Получение отчета по пользователям
+      description: Возвращает отчет о прибыли по каждому пользователю за определенный период.
+      parameters:
+        - in: query
+          name: startDate
+          required: true
+          schema:
+            type: string
+            format: date-time
+          description: Начальная дата периода
+        - in: query
+          name: endDate
+          required: true
+          schema:
+            type: string
+            format: date-time
+          description: Конечная дата периода
+      responses:
+        '200':
+          description: Отчет о прибыли по пользователям
+          content:
+            application/json:
+              schema:
+                type: array
+                maxItems: 1000
+                items:
+                  $ref: '#/components/schemas/ReportUser'
+
   /notifications:
     get:
+      tags:
+        - notifications
       summary: Получение уведомлений
       description: Возвращает список уведомлений для текущего пользователя.
       responses:
@@ -276,53 +699,200 @@ paths:
             application/json:
               schema:
                 type: array
+                maxItems: 500
                 items:
                   $ref: '#/components/schemas/Notification'
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
+    Artist:
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 50
+          pattern: "^[a-zA-Z0-9]+$"
+          example: "artist123"
+        name:
+          type: string
+          maxLength: 100
+          pattern: "^[A-Za-zА-Яа-яЁё\\s-]+$"
+          example: "Иван Иванов"
+        profession:
+          type: string
+          maxLength: 50
+          pattern: "^[A-Za-zА-Яа-яЁё\\s-]+$"
+          example: "Певец"
+    Hall:
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 50
+          pattern: "^[a-zA-Z0-9]+$"
+          example: "hall123"
+        name:
+          type: string
+          maxLength: 100
+          example: "Зал 1"
+        capacity:
+          type: number
+          example: 100
+        seatingPlan:
+          description: "JSON объект с описанием схемы зала"
+          type: object
+          properties:
+            row:
+              type: number
+              example: 10
+            column:
+              type: number
+              example: 10
+            tickets:
+              type: array
+              maxItems: 100
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    maxLength: 50
+                    pattern: "^[a-zA-Z0-9]+$"
+                    example: "ticket123"
+                  seat:
+                    type: string
+                    maxLength: 10
+                    example: "A1"
+                  price:
+                    type: number
+                    example: 100
+                  type:
+                    type: string
+                    maxLength: 20
+                    pattern: "^[A-Za-z]+$"
+                    example: "standard"
+                  status:
+                    type: string
+                    maxLength: 20
+                    pattern: "^(free|booked)$"
+                    example: "free"
+    EventPreview:
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 50
+          pattern: "^[a-zA-Z0-9]+$"
+          example: "event123"
+        title:
+          type: string
+          maxLength: 200
+          example: "Концерт группы XYZ"
+        date:
+          type: string
+          format: date-time
+          example: "2025-03-15T19:00:00Z"
+        genre:
+          type: array
+          maxItems: 5
+          items:
+            type: string
+            maxLength: 50
+          example: ["Драма", "Комедия"]
+          description: "Массив жанров"
+        ageRating:
+          type: string
+          maxLength: 5
+          pattern: "^(G|PG|PG-13|R|NC-17)$"
+          example: "NC-17"
+        minPrice:
+          type: number
+          description: "Мин. цена"
+        imgPreview:
+          type: string
+          maxLength: 255
+          example: "Постер к мероприятию"
+        status:
+          type: string
+          maxLength: 20
+          pattern: "^(active|inactive)$"
+          example: "active"
     Event:
       type: object
       properties:
         id:
           type: string
+          maxLength: 50
+          pattern: "^[a-zA-Z0-9]+$"
           example: "event123"
         title:
           type: string
+          maxLength: 200
           example: "Концерт группы XYZ"
-        description:
-          type: string
-          example: "Описание мероприятия"
-        eventDate:
+        date:
           type: string
           format: date-time
           example: "2025-03-15T19:00:00Z"
-        location:
-          type: string
-          example: "Клуб ABC, Москва"
-        seatingPlan:
-          type: object
-          description: "JSON объект с описанием схемы зала"
-        multimedia:
+        genre:
           type: array
+          maxItems: 5
           items:
             type: string
-          description: "Массив URL для изображений и видео"
+            maxLength: 50
+          example: ["Драма", "Комедия"]
+          description: "Массив жанров"
+        ageRating:
+          type: string
+          maxLength: 5
+          pattern: "^(G|PG|PG-13|R|NC-17)$"
+          example: "NC-17"
+        description:
+          type: string
+          maxLength: 1000
+          example: "Описание мероприятия"
+        artists:
+          type: array
+          maxItems: 10
+          items:
+            $ref: '#/components/schemas/Artist'
+          example: [{id: "artist123", name: "Иван Иванов", profession: "Певец"}]
+        imgPreview:
+          type: string
+          maxLength: 255
+          example: "Постер к мероприятию"
+        status:
+          type: string
+          maxLength: 20
+          pattern: "^(active|inactive)$"
+          example: "active"
     Booking:
       type: object
       properties:
         bookingId:
           type: string
+          maxLength: 50
+          pattern: "^[a-zA-Z0-9]+$"
           example: "booking123"
         userId:
           type: string
+          maxLength: 50
+          pattern: "^[a-zA-Z0-9]+$"
           example: "user456"
         eventId:
           type: string
+          maxLength: 50
+          pattern: "^[a-zA-Z0-9]+$"
           example: "event123"
         seats:
           type: array
+          maxItems: 20
           items:
             type: string
+            maxLength: 10
           example: ["A1", "A2"]
         bookingDate:
           type: string
@@ -330,18 +900,26 @@ components:
           example: "2025-03-01T12:00:00Z"
         status:
           type: string
+          maxLength: 20
+          pattern: "^(pending|confirmed|cancelled)$"
           example: "confirmed"
     Ticket:
       type: object
       properties:
         ticketId:
           type: string
+          maxLength: 50
+          pattern: "^[a-zA-Z0-9]+$"
           example: "ticket789"
         bookingId:
           type: string
+          maxLength: 50
+          pattern: "^[a-zA-Z0-9]+$"
           example: "booking123"
         ticketCode:
           type: string
+          maxLength: 100
+          pattern: "^[A-Za-z0-9]+$"
           example: "QR123456789"
         issueDate:
           type: string
@@ -352,25 +930,36 @@ components:
       properties:
         id:
           type: string
+          maxLength: 50
+          pattern: "^[a-zA-Z0-9]+$"
           example: "user456"
         name:
           type: string
+          maxLength: 100
+          pattern: "^[A-Za-zА-Яа-яЁё\\s-]+$"
           example: "Иван Иванов"
         email:
           type: string
           format: email
+          maxLength: 255
+          pattern: "^[\\w\\.-]+@[\\w\\.-]+\\.\\w{2,}$"
           example: "ivan@example.com"
         role:
           type: string
+          maxLength: 20
+          pattern: "^(client|admin)$"
           example: "client"
     Notification:
       type: object
       properties:
         id:
           type: string
+          maxLength: 50
+          pattern: "^[a-zA-Z0-9]+$"
           example: "notif001"
         message:
           type: string
+          maxLength: 500
           example: "Ваше бронирование подтверждено."
         date:
           type: string
@@ -379,3 +968,49 @@ components:
         read:
           type: boolean
           example: false
+    Report:
+      type: object
+      properties:
+        profit:
+          type: number
+          example: 1000
+        ticketSold:
+          type: number
+          example: 100
+        expenses:
+          type: number
+          example: 500
+        netProfit:
+          type: number
+          example: 500
+    ReportPeriod:
+      type: object
+      properties:
+        startDate:
+          type: string
+          format: date-time
+          example: "2025-03-01T12:00:00Z"
+        endDate:
+          type: string
+          format: date-time
+          example: "2025-03-15T12:00:00Z"
+        report:
+          $ref: '#/components/schemas/Report'
+    ReportEvent:
+      type: object
+      properties:
+        eventId:
+          type: string
+          maxLength: 50
+          pattern: "^[a-zA-Z0-9]+$"
+        report:
+          $ref: '#/components/schemas/Report'
+    ReportUser:
+      type: object
+      properties:
+        userId:
+          type: string
+          maxLength: 50
+          pattern: "^[a-zA-Z0-9]+$"
+        report:
+          $ref: '#/components/schemas/Report'
