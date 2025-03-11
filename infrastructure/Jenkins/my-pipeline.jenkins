@@ -3,227 +3,197 @@ pipeline {
 
     environment {
         DOCKER_REGISTRY = "myregistry.example.com"
-        DOCKER_USER = credentials('docker-username')
-        DOCKER_PASSWORD = credentials('docker-password')
         APP_VERSION = "${env.BUILD_NUMBER}"
         KUBE_NAMESPACE = "my-namespace"
-        HELM_CHART_PATH = "infrastructure/helm/"
+        HELM_CHART_PATH = "infrastructure/helm/my-microservices-chart"
     }
 
     stages {
         stage('Checkout') {
             steps {
-                echo "Checkout кода из репозитория"
+                echo "Checking out source code..."
                 checkout scm
             }
         }
-
+        stage('List Resources') {
+        steps {
+        script {
+            // Определим список каталогов, где находятся проекты с pom.xml
+            def modules = [
+                "gateway-service",
+                "auth-service",
+                "user-service",
+                "public-event-service",
+                "admin-event-service",
+                "booking-service",
+                "ticketing-service",
+                "payment-service",
+                "notification-service",
+                "analytics-service"
+            ]
+            def builds = [:]
+            for (module in modules) {
+                // Для каждого модуля создадим ветку в параллельном запуске
+                builds[module] = {
+                    dir(module) {
+                    bat 'dir /s /b src\\main\\resources'
+                    }
+                }
+            }
+            // Запускаем параллельно сборку всех модулей
+            parallel builds
+        }
+        }
+        }
         stage('Build & Test') {
-            steps {
-                echo "Сборка Maven-проектов и запуск тестов"
-                // Сборка всех модулей; предполагается, что проекты находятся в отдельных каталогах
-                sh 'mvn clean package -DskipTests'
-                sh 'mvn test'
+        steps {
+        script {
+            // Определим список каталогов, где находятся проекты с pom.xml
+            def modules = [
+                "gateway-service",
+                "auth-service",
+                "user-service",
+                "public-event-service",
+                "admin-event-service",
+                "booking-service",
+                "ticketing-service",
+                "payment-service",
+                "notification-service",
+                "analytics-service"
+            ]
+            def builds = [:]
+            for (module in modules) {
+                // Для каждого модуля создадим ветку в параллельном запуске
+                builds[module] = {
+                    dir(module) {
+                        echo "Building and testing ${module}..."
+                        bat "mvn clean package -DskipTests"
+                        bat "mvn test"
+                    }
+                }
             }
+            // Запускаем параллельно сборку всех модулей
+            parallel builds
         }
-
+        }
+        }
         stage('Build Docker Images') {
-            parallel {
-                stage('Build gateway-service') {
-                    steps {
-                        dir('gateway-service') {
-                            echo "Сборка образа для gateway-service"
-                            sh "docker build -t ${DOCKER_REGISTRY}/gateway-service:${APP_VERSION} ."
-                        }
-                    }
-                }
-                stage('Build auth-service') {
-                    steps {
-                        dir('auth-service') {
-                            echo "Сборка образа для auth-service"
-                            sh "docker build -t ${DOCKER_REGISTRY}/auth-service:${APP_VERSION} ."
-                        }
-                    }
-                }
-                stage('Build user-service') {
-                    steps {
-                        dir('user-service') {
-                            echo "Сборка образа для user-service"
-                            sh "docker build -t ${DOCKER_REGISTRY}/user-service:${APP_VERSION} ."
-                        }
-                    }
-                }
-                stage('Build public-event-service') {
-                    steps {
-                        dir('public-event-service') {
-                            echo "Сборка образа для public-event-service"
-                            sh "docker build -t ${DOCKER_REGISTRY}/public-event-service:${APP_VERSION} ."
-                        }
-                    }
-                }
-                stage('Build admin-event-service') {
-                    steps {
-                        dir('admin-event-service') {
-                            echo "Сборка образа для admin-event-service"
-                            sh "docker build -t ${DOCKER_REGISTRY}/admin-event-service:${APP_VERSION} ."
-                        }
-                    }
-                }
-                stage('Build booking-service') {
-                    steps {
-                        dir('booking-service') {
-                            echo "Сборка образа для booking-service"
-                            sh "docker build -t ${DOCKER_REGISTRY}/booking-service:${APP_VERSION} ."
-                        }
-                    }
-                }
-                stage('Build ticketing-service') {
-                    steps {
-                        dir('ticketing-service') {
-                            echo "Сборка образа для ticketing-service"
-                            sh "docker build -t ${DOCKER_REGISTRY}/ticketing-service:${APP_VERSION} ."
-                        }
-                    }
-                }
-                stage('Build payment-service') {
-                    steps {
-                        dir('payment-service') {
-                            echo "Сборка образа для payment-service"
-                            sh "docker build -t ${DOCKER_REGISTRY}/payment-service:${APP_VERSION} ."
-                        }
-                    }
-                }
-                stage('Build notification-service') {
-                    steps {
-                        dir('notification-service') {
-                            echo "Сборка образа для notification-service"
-                            sh "docker build -t ${DOCKER_REGISTRY}/notification-service:${APP_VERSION} ."
-                        }
-                    }
-                }
-                stage('Build analytics-service') {
-                    steps {
-                        dir('analytics-service') {
-                            echo "Сборка образа для analytics-service"
-                            sh "docker build -t ${DOCKER_REGISTRY}/analytics-service:${APP_VERSION} ."
-                        }
-                    }
-                }
-            }
-        }
-
-        stage('Push Docker Images') {
             steps {
-                echo "Логинимся в Docker-реестр и пушим образы"
                 script {
-                    sh "docker login ${DOCKER_REGISTRY} -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}"
-                }
-                parallel {
-                    stage('Push gateway-service') {
-                        steps {
-                            dir('gateway-service') {
-                                sh "docker push ${DOCKER_REGISTRY}/gateway-service:${APP_VERSION}"
-                            }
-                        }
-                    }
-                    stage('Push auth-service') {
-                        steps {
-                            dir('auth-service') {
-                                sh "docker push ${DOCKER_REGISTRY}/auth-service:${APP_VERSION}"
-                            }
-                        }
-                    }
-                    stage('Push user-service') {
-                        steps {
-                            dir('user-service') {
-                                sh "docker push ${DOCKER_REGISTRY}/user-service:${APP_VERSION}"
-                            }
-                        }
-                    }
-                    stage('Push public-event-service') {
-                        steps {
-                            dir('public-event-service') {
-                                sh "docker push ${DOCKER_REGISTRY}/public-event-service:${APP_VERSION}"
-                            }
-                        }
-                    }
-                    stage('Push admin-event-service') {
-                        steps {
-                            dir('admin-event-service') {
-                                sh "docker push ${DOCKER_REGISTRY}/admin-event-service:${APP_VERSION}"
-                            }
-                        }
-                    }
-                    stage('Push booking-service') {
-                        steps {
-                            dir('booking-service') {
-                                sh "docker push ${DOCKER_REGISTRY}/booking-service:${APP_VERSION}"
-                            }
-                        }
-                    }
-                    stage('Push ticketing-service') {
-                        steps {
-                            dir('ticketing-service') {
-                                sh "docker push ${DOCKER_REGISTRY}/ticketing-service:${APP_VERSION}"
-                            }
-                        }
-                    }
-                    stage('Push payment-service') {
-                        steps {
-                            dir('payment-service') {
-                                sh "docker push ${DOCKER_REGISTRY}/payment-service:${APP_VERSION}"
-                            }
-                        }
-                    }
-                    stage('Push notification-service') {
-                        steps {
-                            dir('notification-service') {
-                                sh "docker push ${DOCKER_REGISTRY}/notification-service:${APP_VERSION}"
-                            }
-                        }
-                    }
-                    stage('Push analytics-service') {
-                        steps {
-                            dir('analytics-service') {
-                                sh "docker push ${DOCKER_REGISTRY}/analytics-service:${APP_VERSION}"
-                            }
-                        }
+                def modules = [
+                "gateway-service",
+                "auth-service",
+                "user-service",
+                "public-event-service",
+                "admin-event-service",
+                "booking-service",
+                "ticketing-service",
+                "payment-service",
+                "notification-service",
+                "analytics-service"
+            ]
+            def builds = [:]
+            for (module in modules) {
+                // Для каждого модуля создадим ветку в параллельном запуске
+                builds[module] = {
+                    dir(module) {
+                        echo "Сборка образа для ${module}..."
+                        bat "docker build"
                     }
                 }
             }
+            // Запускаем параллельно сборку всех модулей
+            parallel builds
+            }
         }
-
+        }
+         stage('Push Docker Images') {
+            steps {
+                script {
+                    echo "Pushing Docker images locally (no registry authentication)..."
+                    parallel(
+                        "Push gateway-service": {
+                            dir('gateway-service') {
+                                bat "docker push gateway-service:${APP_VERSION}"
+                            }
+                        },
+                        "Push auth-service": {
+                            dir('auth-service') {
+                                bat "docker push auth-service:${APP_VERSION}"
+                            }
+                        },
+                        "Push user-service": {
+                            dir('user-service') {
+                                bat "docker push user-service:${APP_VERSION}"
+                            }
+                        },
+                        "Push public-event-service": {
+                            dir('public-event-service') {
+                                bat "docker push public-event-service:${APP_VERSION}"
+                            }
+                        },
+                        "Push admin-event-service": {
+                            dir('admin-event-service') {
+                                bat "docker push admin-event-service:${APP_VERSION}"
+                            }
+                        },
+                        "Push booking-service": {
+                            dir('booking-service') {
+                                bat "docker push booking-service:${APP_VERSION}"
+                            }
+                        },
+                        "Push ticketing-service": {
+                            dir('ticketing-service') {
+                                bat "docker push ticketing-service:${APP_VERSION}"
+                            }
+                        },
+                        "Push payment-service": {
+                            dir('payment-service') {
+                                bat "docker push payment-service:${APP_VERSION}"
+                            }
+                        },
+                        "Push notification-service": {
+                            dir('notification-service') {
+                                bat "docker push notification-service:${APP_VERSION}"
+                            }
+                        },
+                        "Push analytics-service": {
+                            dir('analytics-service') {
+                                bat "docker push analytics-service:${APP_VERSION}"
+                            }
+                        }
+                    )
+                }
+            }
+        }
         stage('Deploy to Kubernetes') {
             steps {
-                echo "Обновление Helm-релиза umbrella chart"
-                sh """
-                   helm upgrade --install my-microservices ${HELM_CHART_PATH} \
-                     --namespace ${KUBE_NAMESPACE} \
-                     --set global.eureka.defaultZone=http://eureka-server:8761/eureka/ \
-                     --set gateway-service.image.tag=${APP_VERSION} \
-                     --set auth-service.image.tag=${APP_VERSION} \
-                     --set user-service.image.tag=${APP_VERSION} \
-                     --set public-event-service.image.tag=${APP_VERSION} \
-                     --set admin-event-service.image.tag=${APP_VERSION} \
-                     --set booking-service.image.tag=${APP_VERSION} \
-                     --set ticketing-service.image.tag=${APP_VERSION} \
-                     --set payment-service.image.tag=${APP_VERSION} \
-                     --set notification-service.image.tag=${APP_VERSION} \
-                     --set analytics-service.image.tag=${APP_VERSION}
+                echo "Deploying to Kubernetes using Helm..."
+                bat """
+                    helm upgrade --install my-microservices %HELM_CHART_PATH% --namespace %KUBE_NAMESPACE% \
+                      --set global.eureka.defaultZone="http://eureka-server:8761/eureka/" \
+                      --set gateway-service.image.tag=${APP_VERSION} \
+                      --set auth-service.image.tag=${APP_VERSION} \
+                      --set user-service.image.tag=${APP_VERSION} \
+                      --set public-event-service.image.tag=${APP_VERSION} \
+                      --set admin-event-service.image.tag=${APP_VERSION} \
+                      --set booking-service.image.tag=${APP_VERSION} \
+                      --set ticketing-service.image.tag=${APP_VERSION} \
+                      --set payment-service.image.tag=${APP_VERSION} \
+                      --set notification-service.image.tag=${APP_VERSION} \
+                      --set analytics-service.image.tag=${APP_VERSION}
                 """
             }
         }
     }
-
     post {
         success {
-            echo "Pipeline выполнен успешно!"
+            echo "Pipeline executed successfully!"
         }
         failure {
-            echo "Pipeline завершился с ошибками!"
+            echo "Pipeline execution failed!"
         }
         always {
-            echo "Очистка рабочей области..."
             cleanWs()
         }
     }
