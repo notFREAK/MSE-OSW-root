@@ -77,60 +77,59 @@ pipeline {
             }
         }
         }
-        stage('Push Docker Images') {
+         stage('Push Docker Images') {
             steps {
                 script {
-                    echo "Pushing Docker images to local registry (no credentials required)..."
-                    // Если в локальной среде аутентификация не требуется, можно убрать docker login
+                    echo "Pushing Docker images locally (no registry authentication)..."
                     parallel(
                         "Push gateway-service": {
                             dir('gateway-service') {
-                                bat "docker push %DOCKER_REGISTRY%/gateway-service:%APP_VERSION%"
+                                bat "docker push gateway-service:${APP_VERSION}"
                             }
                         },
                         "Push auth-service": {
                             dir('auth-service') {
-                                bat "docker push %DOCKER_REGISTRY%/auth-service:%APP_VERSION%"
+                                bat "docker push auth-service:${APP_VERSION}"
                             }
                         },
                         "Push user-service": {
                             dir('user-service') {
-                                bat "docker push %DOCKER_REGISTRY%/user-service:%APP_VERSION%"
+                                bat "docker push user-service:${APP_VERSION}"
                             }
                         },
                         "Push public-event-service": {
                             dir('public-event-service') {
-                                bat "docker push %DOCKER_REGISTRY%/public-event-service:%APP_VERSION%"
+                                bat "docker push public-event-service:${APP_VERSION}"
                             }
                         },
                         "Push admin-event-service": {
                             dir('admin-event-service') {
-                                bat "docker push %DOCKER_REGISTRY%/admin-event-service:%APP_VERSION%"
+                                bat "docker push admin-event-service:${APP_VERSION}"
                             }
                         },
                         "Push booking-service": {
                             dir('booking-service') {
-                                bat "docker push %DOCKER_REGISTRY%/booking-service:%APP_VERSION%"
+                                bat "docker push booking-service:${APP_VERSION}"
                             }
                         },
                         "Push ticketing-service": {
                             dir('ticketing-service') {
-                                bat "docker push %DOCKER_REGISTRY%/ticketing-service:%APP_VERSION%"
+                                bat "docker push ticketing-service:${APP_VERSION}"
                             }
                         },
                         "Push payment-service": {
                             dir('payment-service') {
-                                bat "docker push %DOCKER_REGISTRY%/payment-service:%APP_VERSION%"
+                                bat "docker push payment-service:${APP_VERSION}"
                             }
                         },
                         "Push notification-service": {
                             dir('notification-service') {
-                                bat "docker push %DOCKER_REGISTRY%/notification-service:%APP_VERSION%"
+                                bat "docker push notification-service:${APP_VERSION}"
                             }
                         },
                         "Push analytics-service": {
                             dir('analytics-service') {
-                                bat "docker push %DOCKER_REGISTRY%/analytics-service:%APP_VERSION%"
+                                bat "docker push analytics-service:${APP_VERSION}"
                             }
                         }
                     )
@@ -141,7 +140,18 @@ pipeline {
             steps {
                 echo "Deploying to Kubernetes using Helm..."
                 bat """
-                    helm upgrade --install my-microservices %HELM_CHART_PATH% --namespace %KUBE_NAMESPACE% --set global.eureka.defaultZone="http://eureka-server:8761/eureka/" --set gateway-service.image.tag=%APP_VERSION% --set auth-service.image.tag=%APP_VERSION% --set user-service.image.tag=%APP_VERSION% --set public-event-service.image.tag=%APP_VERSION% --set admin-event-service.image.tag=%APP_VERSION% --set booking-service.image.tag=%APP_VERSION% --set ticketing-service.image.tag=%APP_VERSION% --set payment-service.image.tag=%APP_VERSION% --set notification-service.image.tag=%APP_VERSION% --set analytics-service.image.tag=%APP_VERSION%
+                    helm upgrade --install my-microservices %HELM_CHART_PATH% --namespace %KUBE_NAMESPACE% \
+                      --set global.eureka.defaultZone="http://eureka-server:8761/eureka/" \
+                      --set gateway-service.image.tag=${APP_VERSION} \
+                      --set auth-service.image.tag=${APP_VERSION} \
+                      --set user-service.image.tag=${APP_VERSION} \
+                      --set public-event-service.image.tag=${APP_VERSION} \
+                      --set admin-event-service.image.tag=${APP_VERSION} \
+                      --set booking-service.image.tag=${APP_VERSION} \
+                      --set ticketing-service.image.tag=${APP_VERSION} \
+                      --set payment-service.image.tag=${APP_VERSION} \
+                      --set notification-service.image.tag=${APP_VERSION} \
+                      --set analytics-service.image.tag=${APP_VERSION}
                 """
             }
         }
