@@ -1,0 +1,22 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: auth-service
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+jwt:
+  secret: mySecretKey
+  accessTokenExpirationMs: 3600000     
+  refreshTokenExpirationMs: 604800000   
+
+feign:
+  client:
+    config:
+      default:
+        decode404: true
+
+

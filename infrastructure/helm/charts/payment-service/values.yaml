@@ -1,0 +1,22 @@
+replicaCount: 1
+
+image:
+  repository: myregistry/payment-service
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8089
+
+env:
+  eureka:
+    defaultZone: "http://eureka-server:8761/eureka/"
+
+resources:
+  limits:
+    cpu: "300m"
+    memory: "256Mi"
+  requests:
+    cpu: "150m"
+    memory: "128Mi"

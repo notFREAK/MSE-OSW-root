@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "notification-service.fullname" . }}
+  labels:
+    app: {{ include "notification-service.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "notification-service.fullname" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "notification-service.fullname" . }}
+    spec:
+      containers:
+      - name: {{ include "notification-service.name" . }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.service.port }}
+        env:
+          - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+            value: {{ .Values.env.eureka.defaultZone | quote }}
+        {{- if .Values.env.kafka }}
+          - name: KAFKA_BOOTSTRAP_SERVERS
+            value: {{ .Values.env.kafka.bootstrapServers | quote }}
+        {{- end }}
+        resources:
+          limits:
+            cpu: {{ .Values.resources.limits.cpu }}
+            memory: {{ .Values.resources.limits.memory }}
+          requests:
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }}

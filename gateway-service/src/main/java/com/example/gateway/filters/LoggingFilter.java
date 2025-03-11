@@ -20,6 +20,6 @@ public class LoggingFilter implements GlobalFilter, Ordered {
 
     @Override
     public int getOrder() {
-        return 0; // Этот фильтр выполняется после JwtAuthenticationFilter
+        return 0; 
     }
 }

@@ -1,0 +1,7 @@
+com\example\event\publicservice\client\ContentServiceClient.class
+com\example\event\publicservice\PublicEventServiceApplication.class
+com\example\event\publicservice\controller\EventController.class
+com\example\event\publicservice\model\Event.class
+com\example\event\publicservice\dto\EventResponse.class
+com\example\event\publicservice\repository\EventRepository.class
+com\example\event\publicservice\service\EventService.class

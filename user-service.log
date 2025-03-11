@@ -1,0 +1,91 @@
+2025-03-09 01:30:36.280 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1d1h45m5s969ms125µs100ns).
+2025-03-09 01:37:09.083 INFO  c.e.u.UserManagementServiceApplication - Starting UserManagementServiceApplication using Java 17.0.11 on KOMPUTER with PID 26376 (C:\MyProjects\Diplom\MSE-OSW-root\user-service\target\classes started by Никита in C:\MyProjects\Diplom\MSE-OSW-root)
+2025-03-09 01:37:09.086 INFO  c.e.u.UserManagementServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-09 01:37:09.896 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-09 01:37:10.014 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 106 ms. Found 1 JPA repository interfaces.
+2025-03-09 01:37:10.307 INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=65ba038d-4064-36ec-ad81-6428f41597ac
+2025-03-09 01:37:10.933 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8082 (http)
+2025-03-09 01:37:10.947 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-03-09 01:37:10.948 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-03-09 01:37:11.174 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-03-09 01:37:11.174 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2033 ms
+2025-03-09 01:37:11.595 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-09 01:37:11.687 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.12.Final
+2025-03-09 01:37:11.850 INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-03-09 01:37:11.918 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-03-09 01:37:12.138 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-03-09 01:37:12.164 INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2025-03-09 01:37:12.737 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-03-09 01:37:12.743 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-09 01:37:13.254 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-09 01:37:13.858 WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 2816034c-523c-4aaa-be33-8b841bac9560
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-03-09 01:37:14.031 INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@396ec737, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@35d53cd8, org.springframework.security.web.context.SecurityContextPersistenceFilter@52667676, org.springframework.security.web.header.HeaderWriterFilter@164db8f0, org.springframework.security.web.csrf.CsrfFilter@ff12b53, org.springframework.security.web.authentication.logout.LogoutFilter@6d94a966, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@279ebd94, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@29693b1d, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@1bed61d2, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@502b9399, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@39a09c0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3dbf3bc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@8a11a19, org.springframework.security.web.session.SessionManagementFilter@21f0cc97, org.springframework.security.web.access.ExceptionTranslationFilter@5ace6611, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3555d804]
+2025-03-09 01:37:15.264 INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2025-03-09 01:37:15.298 INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate.
+2025-03-09 01:37:16.438 INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2025-03-09 01:37:16.475 WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-03-09 01:37:16.495 INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2025-03-09 01:37:16.568 INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2025-03-09 01:37:16.571 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 01:37:16.587 INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false
+2025-03-09 01:37:16.588 INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2025-03-09 01:37:16.588 INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2025-03-09 01:37:16.588 INFO  c.netflix.discovery.DiscoveryClient - Application is null : false
+2025-03-09 01:37:16.589 INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2025-03-09 01:37:16.589 INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true
+2025-03-09 01:37:16.589 INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2025-03-09 01:37:16.834 INFO  c.netflix.discovery.DiscoveryClient - The response status is 200
+2025-03-09 01:37:16.836 INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2025-03-09 01:37:16.839 INFO  c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2025-03-09 01:37:16.843 INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1741459036842 with initial instances count: 0
+2025-03-09 01:37:16.845 INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application USER-SERVICE with eureka with status UP
+2025-03-09 01:37:16.845 INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1741459036845, current=UP, previous=STARTING]
+2025-03-09 01:37:16.847 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_USER-SERVICE/localhost:user-service:8082: registering service...
+2025-03-09 01:37:16.873 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8082 (http) with context path ''
+2025-03-09 01:37:16.873 INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8082
+2025-03-09 01:37:16.886 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_USER-SERVICE/localhost:user-service:8082 - registration status: 204
+2025-03-09 01:37:17.999 INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2025-03-09 01:37:18.005 INFO  c.e.u.UserManagementServiceApplication - Started UserManagementServiceApplication in 10.693 seconds (JVM running for 11.151)
+2025-03-09 01:37:46.842 INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false
+2025-03-09 01:37:46.843 INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2025-03-09 01:37:46.843 INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2025-03-09 01:37:46.844 INFO  c.netflix.discovery.DiscoveryClient - Application is null : false
+2025-03-09 01:37:46.844 INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2025-03-09 01:37:46.844 INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: false
+2025-03-09 01:37:46.845 INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2025-03-09 01:37:46.865 INFO  c.netflix.discovery.DiscoveryClient - The response status is 200
+2025-03-09 01:42:16.607 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 01:47:16.609 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 01:52:16.636 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 01:57:16.648 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 02:02:16.650 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 02:07:16.656 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 02:12:16.663 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 02:17:16.674 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 02:22:16.682 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 02:27:16.687 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 02:32:16.702 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 02:37:16.714 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 02:42:16.723 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 02:47:16.730 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 02:52:16.740 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 02:57:16.747 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 03:02:16.762 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 03:07:16.769 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 03:12:16.774 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 03:17:16.780 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 03:22:16.790 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 03:27:16.797 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 03:32:16.799 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 03:37:16.804 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 03:42:16.812 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 03:47:16.825 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 03:52:16.839 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 03:57:16.851 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 04:02:16.867 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 04:07:16.887 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration

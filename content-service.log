@@ -1,0 +1,337 @@
+2025-03-07 11:48:01.891 INFO  c.e.c.ContentServiceApplication - Starting ContentServiceApplication using Java 17.0.11 on KOMPUTER with PID 30444 (C:\MyProjects\Diplom\MSE-OSW-root\content-service\target\classes started by Никита in C:\MyProjects\Diplom\MSE-OSW-root)
+2025-03-07 11:48:01.894 INFO  c.e.c.ContentServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-07 11:48:02.586 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2025-03-07 11:48:02.712 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 119 ms. Found 1 MongoDB repository interfaces.
+2025-03-07 11:48:02.959 INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=e79c661b-0eac-37c1-a257-f95bd61233d6
+2025-03-07 11:48:03.417 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8084 (http)
+2025-03-07 11:48:03.434 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-03-07 11:48:03.435 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-03-07 11:48:03.666 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-03-07 11:48:03.668 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1725 ms
+2025-03-07 11:48:03.971 INFO  org.mongodb.driver.client - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "4.6.1"}, "os": {"type": "Windows", "name": "Windows 11", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Oracle Corporation/17.0.11+7-LTS-207"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, streamFactoryFactory=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.Jep395RecordCodecProvider@4db77402]}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='30000 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, sendBufferSize=0}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, sendBufferSize=0}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, contextProvider=null}
+2025-03-07 11:48:04.002 INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:2, serverValue:25}] to localhost:27017
+2025-03-07 11:48:04.002 INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:1, serverValue:24}] to localhost:27017
+2025-03-07 11:48:04.002 INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=25, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=31093600}
+2025-03-07 11:48:04.088 WARN  o.s.data.convert.CustomConversions - Registering converter from class java.time.LocalDateTime to class org.joda.time.LocalDateTime as reading converter although it doesn't convert from a store-supported type; You might want to check your annotation setup at the converter implementation
+2025-03-07 11:48:04.263 WARN  o.s.data.convert.CustomConversions - Registering converter from class java.time.LocalDateTime to class org.joda.time.LocalDateTime as reading converter although it doesn't convert from a store-supported type; You might want to check your annotation setup at the converter implementation
+2025-03-07 11:48:05.229 INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate.
+2025-03-07 11:48:05.576 WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-03-07 11:48:05.599 INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2025-03-07 11:48:05.666 INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2025-03-07 11:48:05.672 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 11:48:05.692 INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false
+2025-03-07 11:48:05.692 INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2025-03-07 11:48:05.692 INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2025-03-07 11:48:05.693 INFO  c.netflix.discovery.DiscoveryClient - Application is null : false
+2025-03-07 11:48:05.693 INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2025-03-07 11:48:05.693 INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true
+2025-03-07 11:48:05.693 INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2025-03-07 11:48:05.961 INFO  c.netflix.discovery.DiscoveryClient - The response status is 200
+2025-03-07 11:48:05.963 INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2025-03-07 11:48:05.966 INFO  c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2025-03-07 11:48:05.974 INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1741322885972 with initial instances count: 3
+2025-03-07 11:48:05.976 INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application CONTENT-SERVICE with eureka with status UP
+2025-03-07 11:48:05.977 INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1741322885977, current=UP, previous=STARTING]
+2025-03-07 11:48:05.979 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_CONTENT-SERVICE/host.docker.internal:content-service:8084: registering service...
+2025-03-07 11:48:06.003 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8084 (http) with context path ''
+2025-03-07 11:48:06.005 INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8084
+2025-03-07 11:48:06.019 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_CONTENT-SERVICE/host.docker.internal:content-service:8084 - registration status: 204
+2025-03-07 11:48:06.247 INFO  c.e.c.ContentServiceApplication - Started ContentServiceApplication in 4.963 seconds (JVM running for 5.306)
+2025-03-07 11:56:28.224 INFO  c.e.c.ContentServiceApplication - Starting ContentServiceApplication using Java 17.0.11 on KOMPUTER with PID 33372 (C:\MyProjects\Diplom\MSE-OSW-root\content-service\target\classes started by Никита in C:\MyProjects\Diplom\MSE-OSW-root)
+2025-03-07 11:56:28.227 INFO  c.e.c.ContentServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-07 11:56:28.865 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2025-03-07 11:56:28.980 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 107 ms. Found 1 MongoDB repository interfaces.
+2025-03-07 11:56:29.189 INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=e79c661b-0eac-37c1-a257-f95bd61233d6
+2025-03-07 11:56:29.636 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8084 (http)
+2025-03-07 11:56:29.649 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-03-07 11:56:29.651 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-03-07 11:56:29.810 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-03-07 11:56:29.810 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1543 ms
+2025-03-07 11:56:30.075 INFO  org.mongodb.driver.client - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "4.6.1"}, "os": {"type": "Windows", "name": "Windows 11", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Oracle Corporation/17.0.11+7-LTS-207"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, streamFactoryFactory=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.Jep395RecordCodecProvider@59c500f7]}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='30000 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, sendBufferSize=0}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, sendBufferSize=0}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, contextProvider=null}
+2025-03-07 11:56:30.096 INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:2, serverValue:26}] to localhost:27017
+2025-03-07 11:56:30.096 INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:1, serverValue:27}] to localhost:27017
+2025-03-07 11:56:30.097 INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=25, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=24855600}
+2025-03-07 11:56:30.175 WARN  o.s.data.convert.CustomConversions - Registering converter from class java.time.LocalDateTime to class org.joda.time.LocalDateTime as reading converter although it doesn't convert from a store-supported type; You might want to check your annotation setup at the converter implementation
+2025-03-07 11:56:30.352 WARN  o.s.data.convert.CustomConversions - Registering converter from class java.time.LocalDateTime to class org.joda.time.LocalDateTime as reading converter although it doesn't convert from a store-supported type; You might want to check your annotation setup at the converter implementation
+2025-03-07 11:56:31.160 INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate.
+2025-03-07 11:56:31.462 WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-03-07 11:56:31.491 INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2025-03-07 11:56:31.584 INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2025-03-07 11:56:31.592 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 11:56:31.617 INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false
+2025-03-07 11:56:31.617 INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2025-03-07 11:56:31.618 INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2025-03-07 11:56:31.618 INFO  c.netflix.discovery.DiscoveryClient - Application is null : false
+2025-03-07 11:56:31.618 INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2025-03-07 11:56:31.618 INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true
+2025-03-07 11:56:31.618 INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2025-03-07 11:56:31.934 INFO  c.netflix.discovery.DiscoveryClient - The response status is 200
+2025-03-07 11:56:31.936 INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2025-03-07 11:56:31.941 INFO  c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2025-03-07 11:56:31.947 INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1741323391946 with initial instances count: 3
+2025-03-07 11:56:31.948 INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application CONTENT-SERVICE with eureka with status UP
+2025-03-07 11:56:31.950 INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1741323391950, current=UP, previous=STARTING]
+2025-03-07 11:56:31.951 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_CONTENT-SERVICE/host.docker.internal:content-service:8084: registering service...
+2025-03-07 11:56:31.977 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8084 (http) with context path ''
+2025-03-07 11:56:31.978 INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8084
+2025-03-07 11:56:31.992 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_CONTENT-SERVICE/host.docker.internal:content-service:8084 - registration status: 204
+2025-03-07 11:56:32.179 INFO  c.e.c.ContentServiceApplication - Started ContentServiceApplication in 4.55 seconds (JVM running for 4.881)
+2025-03-07 12:01:31.630 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 12:06:31.642 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 12:11:31.650 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 12:16:31.654 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 12:21:31.663 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 12:26:31.672 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 12:27:20.891 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-07 12:27:20.892 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-03-07 12:27:20.893 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-03-07 12:31:31.679 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 12:36:31.703 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 12:41:31.718 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 12:44:07.351 INFO  c.e.c.ContentServiceApplication - Starting ContentServiceApplication using Java 17.0.11 on KOMPUTER with PID 37076 (C:\MyProjects\Diplom\MSE-OSW-root\content-service\target\classes started by Никита in C:\MyProjects\Diplom\MSE-OSW-root)
+2025-03-07 12:44:07.354 INFO  c.e.c.ContentServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-07 12:44:08.191 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2025-03-07 12:44:08.355 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 156 ms. Found 1 MongoDB repository interfaces.
+2025-03-07 12:44:08.599 INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=e79c661b-0eac-37c1-a257-f95bd61233d6
+2025-03-07 12:44:09.026 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8084 (http)
+2025-03-07 12:44:09.038 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-03-07 12:44:09.038 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-03-07 12:44:09.186 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-03-07 12:44:09.186 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1786 ms
+2025-03-07 12:44:09.407 INFO  org.mongodb.driver.client - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "4.6.1"}, "os": {"type": "Windows", "name": "Windows 11", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Oracle Corporation/17.0.11+7-LTS-207"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, streamFactoryFactory=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.Jep395RecordCodecProvider@66e17eff]}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='30000 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, sendBufferSize=0}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, sendBufferSize=0}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, contextProvider=null}
+2025-03-07 12:44:09.447 INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:1, serverValue:28}] to localhost:27017
+2025-03-07 12:44:09.447 INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:2, serverValue:29}] to localhost:27017
+2025-03-07 12:44:09.449 INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=25, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=42388800}
+2025-03-07 12:44:09.531 WARN  o.s.data.convert.CustomConversions - Registering converter from class java.time.LocalDateTime to class org.joda.time.LocalDateTime as reading converter although it doesn't convert from a store-supported type; You might want to check your annotation setup at the converter implementation
+2025-03-07 12:44:09.684 WARN  o.s.data.convert.CustomConversions - Registering converter from class java.time.LocalDateTime to class org.joda.time.LocalDateTime as reading converter although it doesn't convert from a store-supported type; You might want to check your annotation setup at the converter implementation
+2025-03-07 12:44:11.470 INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2025-03-07 12:44:11.497 INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate.
+2025-03-07 12:44:12.770 INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2025-03-07 12:44:12.812 WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-03-07 12:44:12.829 INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2025-03-07 12:44:12.888 INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2025-03-07 12:44:12.894 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 12:44:12.916 INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false
+2025-03-07 12:44:12.916 INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2025-03-07 12:44:12.916 INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2025-03-07 12:44:12.917 INFO  c.netflix.discovery.DiscoveryClient - Application is null : false
+2025-03-07 12:44:12.917 INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2025-03-07 12:44:12.917 INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true
+2025-03-07 12:44:12.917 INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2025-03-07 12:44:13.221 INFO  c.netflix.discovery.DiscoveryClient - The response status is 200
+2025-03-07 12:44:13.224 INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2025-03-07 12:44:13.226 INFO  c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2025-03-07 12:44:13.231 INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1741326253230 with initial instances count: 6
+2025-03-07 12:44:13.233 INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application CONTENT-SERVICE with eureka with status UP
+2025-03-07 12:44:13.233 INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1741326253233, current=UP, previous=STARTING]
+2025-03-07 12:44:13.235 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_CONTENT-SERVICE/localhost:content-service:8084: registering service...
+2025-03-07 12:44:13.260 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8084 (http) with context path ''
+2025-03-07 12:44:13.261 INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8084
+2025-03-07 12:44:13.271 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_CONTENT-SERVICE/localhost:content-service:8084 - registration status: 204
+2025-03-07 12:44:14.471 INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2025-03-07 12:44:14.479 INFO  c.e.c.ContentServiceApplication - Started ContentServiceApplication in 8.793 seconds (JVM running for 9.139)
+2025-03-07 12:44:30.112 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-07 12:44:30.113 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-03-07 12:44:30.114 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-03-07 12:44:30.205 INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:3, serverValue:30}] to localhost:27017
+2025-03-07 12:49:19.430 INFO  c.e.c.ContentServiceApplication - Starting ContentServiceApplication using Java 17.0.11 on KOMPUTER with PID 48884 (C:\MyProjects\Diplom\MSE-OSW-root\content-service\target\classes started by Никита in C:\MyProjects\Diplom\MSE-OSW-root)
+2025-03-07 12:49:19.434 INFO  c.e.c.ContentServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-07 12:49:20.050 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2025-03-07 12:49:20.161 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 104 ms. Found 1 MongoDB repository interfaces.
+2025-03-07 12:49:20.354 INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=e79c661b-0eac-37c1-a257-f95bd61233d6
+2025-03-07 12:49:20.684 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8084 (http)
+2025-03-07 12:49:20.693 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-03-07 12:49:20.693 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-03-07 12:49:20.809 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-03-07 12:49:20.810 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1318 ms
+2025-03-07 12:49:21.009 INFO  org.mongodb.driver.client - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "4.6.1"}, "os": {"type": "Windows", "name": "Windows 11", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Oracle Corporation/17.0.11+7-LTS-207"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, streamFactoryFactory=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.Jep395RecordCodecProvider@73c48264]}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='30000 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, sendBufferSize=0}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, sendBufferSize=0}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, contextProvider=null}
+2025-03-07 12:49:21.029 INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:1, serverValue:41}] to localhost:27017
+2025-03-07 12:49:21.029 INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:2, serverValue:42}] to localhost:27017
+2025-03-07 12:49:21.029 INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=25, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=32662100}
+2025-03-07 12:49:21.104 WARN  o.s.data.convert.CustomConversions - Registering converter from class java.time.LocalDateTime to class org.joda.time.LocalDateTime as reading converter although it doesn't convert from a store-supported type; You might want to check your annotation setup at the converter implementation
+2025-03-07 12:49:21.242 WARN  o.s.data.convert.CustomConversions - Registering converter from class java.time.LocalDateTime to class org.joda.time.LocalDateTime as reading converter although it doesn't convert from a store-supported type; You might want to check your annotation setup at the converter implementation
+2025-03-07 12:49:22.988 INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2025-03-07 12:49:23.026 INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate.
+2025-03-07 12:49:24.282 INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2025-03-07 12:49:24.334 WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-03-07 12:49:24.355 INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2025-03-07 12:49:24.448 INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2025-03-07 12:49:24.458 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 12:49:24.491 INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false
+2025-03-07 12:49:24.491 INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2025-03-07 12:49:24.491 INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2025-03-07 12:49:24.492 INFO  c.netflix.discovery.DiscoveryClient - Application is null : false
+2025-03-07 12:49:24.492 INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2025-03-07 12:49:24.492 INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true
+2025-03-07 12:49:24.492 INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2025-03-07 12:49:24.843 INFO  c.netflix.discovery.DiscoveryClient - The response status is 200
+2025-03-07 12:49:24.846 INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2025-03-07 12:49:24.849 INFO  c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2025-03-07 12:49:24.854 INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1741326564853 with initial instances count: 6
+2025-03-07 12:49:24.855 INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application CONTENT-SERVICE with eureka with status UP
+2025-03-07 12:49:24.856 INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1741326564856, current=UP, previous=STARTING]
+2025-03-07 12:49:24.857 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_CONTENT-SERVICE/localhost:content-service:8084: registering service...
+2025-03-07 12:49:24.883 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8084 (http) with context path ''
+2025-03-07 12:49:24.884 INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8084
+2025-03-07 12:49:24.899 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_CONTENT-SERVICE/localhost:content-service:8084 - registration status: 204
+2025-03-07 12:49:26.102 INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2025-03-07 12:49:26.117 INFO  c.e.c.ContentServiceApplication - Started ContentServiceApplication in 8.388 seconds (JVM running for 8.786)
+2025-03-07 12:53:35.704 INFO  c.e.c.ContentServiceApplication - Starting ContentServiceApplication using Java 17.0.11 on KOMPUTER with PID 23156 (C:\MyProjects\Diplom\MSE-OSW-root\content-service\target\classes started by Никита in C:\MyProjects\Diplom\MSE-OSW-root)
+2025-03-07 12:53:35.707 INFO  c.e.c.ContentServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-07 12:53:36.421 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2025-03-07 12:53:36.548 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 120 ms. Found 1 MongoDB repository interfaces.
+2025-03-07 12:53:36.781 INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=e79c661b-0eac-37c1-a257-f95bd61233d6
+2025-03-07 12:53:37.211 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8084 (http)
+2025-03-07 12:53:37.222 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-03-07 12:53:37.223 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-03-07 12:53:37.390 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-03-07 12:53:37.390 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1614 ms
+2025-03-07 12:53:37.609 INFO  org.mongodb.driver.client - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "4.6.1"}, "os": {"type": "Windows", "name": "Windows 11", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Oracle Corporation/17.0.11+7-LTS-207"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, streamFactoryFactory=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.Jep395RecordCodecProvider@7f42e06e]}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='30000 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, sendBufferSize=0}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, sendBufferSize=0}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, contextProvider=null}
+2025-03-07 12:53:37.646 INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:2, serverValue:54}] to localhost:27017
+2025-03-07 12:53:37.646 INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:1, serverValue:53}] to localhost:27017
+2025-03-07 12:53:37.647 INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=25, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=32465000}
+2025-03-07 12:53:37.723 WARN  o.s.data.convert.CustomConversions - Registering converter from class java.time.LocalDateTime to class org.joda.time.LocalDateTime as reading converter although it doesn't convert from a store-supported type; You might want to check your annotation setup at the converter implementation
+2025-03-07 12:53:37.881 WARN  o.s.data.convert.CustomConversions - Registering converter from class java.time.LocalDateTime to class org.joda.time.LocalDateTime as reading converter although it doesn't convert from a store-supported type; You might want to check your annotation setup at the converter implementation
+2025-03-07 12:53:39.842 INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2025-03-07 12:53:39.870 INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate.
+2025-03-07 12:53:41.136 INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2025-03-07 12:53:41.193 WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-03-07 12:53:41.211 INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2025-03-07 12:53:41.288 INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2025-03-07 12:53:41.293 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 12:53:41.316 INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false
+2025-03-07 12:53:41.316 INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2025-03-07 12:53:41.317 INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2025-03-07 12:53:41.317 INFO  c.netflix.discovery.DiscoveryClient - Application is null : false
+2025-03-07 12:53:41.317 INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2025-03-07 12:53:41.317 INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true
+2025-03-07 12:53:41.317 INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2025-03-07 12:53:41.590 INFO  c.netflix.discovery.DiscoveryClient - The response status is 200
+2025-03-07 12:53:41.593 INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2025-03-07 12:53:41.596 INFO  c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2025-03-07 12:53:41.603 INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1741326821601 with initial instances count: 6
+2025-03-07 12:53:41.606 INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application CONTENT-SERVICE with eureka with status UP
+2025-03-07 12:53:41.607 INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1741326821607, current=UP, previous=STARTING]
+2025-03-07 12:53:41.608 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_CONTENT-SERVICE/localhost:content-service:8084: registering service...
+2025-03-07 12:53:41.639 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8084 (http) with context path ''
+2025-03-07 12:53:41.640 INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8084
+2025-03-07 12:53:41.651 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_CONTENT-SERVICE/localhost:content-service:8084 - registration status: 204
+2025-03-07 12:53:42.873 INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2025-03-07 12:53:42.880 INFO  c.e.c.ContentServiceApplication - Started ContentServiceApplication in 8.868 seconds (JVM running for 9.293)
+2025-03-07 12:58:41.327 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 13:03:41.343 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 13:08:41.350 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 13:13:41.358 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 13:18:41.373 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 13:23:41.375 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 13:28:41.382 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 13:33:41.392 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 13:38:41.407 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 13:43:41.429 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 13:48:41.435 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 13:53:41.447 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 13:58:41.462 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 14:03:41.470 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 14:08:41.481 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 14:13:41.489 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 14:18:41.496 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 14:23:41.512 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 14:28:41.523 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 14:33:41.531 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 14:38:41.542 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 14:43:41.548 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 14:48:41.549 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 14:53:41.557 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 14:58:41.559 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 15:03:41.563 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 15:08:41.576 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 15:13:41.588 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 15:18:41.591 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 15:23:41.599 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 15:28:41.601 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 15:33:41.607 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 15:38:41.609 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 15:43:41.617 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 15:48:41.632 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 15:53:41.635 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 15:58:41.639 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 16:03:41.646 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 16:08:41.654 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 16:13:41.669 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 16:18:41.679 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 16:23:41.696 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 16:28:41.697 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 16:33:41.702 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 16:38:41.718 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 16:43:41.722 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 16:48:41.725 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 16:53:41.732 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 16:58:41.748 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 17:03:41.752 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 17:08:41.759 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 17:13:41.768 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 17:18:41.781 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 17:23:41.789 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 17:28:41.804 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 17:33:41.838 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 17:38:41.844 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 17:43:41.846 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 17:48:41.856 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 17:53:41.860 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 17:58:41.867 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 18:03:41.881 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 18:08:41.897 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 18:13:41.900 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 18:18:41.916 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 18:23:41.924 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 18:28:41.940 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 18:33:41.956 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 18:38:41.966 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 18:43:41.972 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 18:48:41.980 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 18:53:41.990 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 18:58:42.002 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 19:03:42.005 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 19:08:42.010 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 19:13:42.025 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 19:18:42.034 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 19:23:42.038 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 19:28:42.042 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 19:33:42.063 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 19:38:42.076 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 19:43:42.090 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 19:48:42.095 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 19:53:42.102 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 19:58:42.111 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 20:03:42.125 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 20:08:42.137 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 20:13:42.154 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 20:18:42.155 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 20:23:42.159 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 20:28:42.160 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 20:33:42.175 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 20:38:42.187 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 21:47:07.130 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 21:52:07.137 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 21:57:07.156 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 22:02:07.158 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 22:07:07.173 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 22:12:07.176 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 22:17:07.177 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 22:22:07.179 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 22:27:07.191 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 22:32:07.195 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 22:37:07.212 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 22:42:07.226 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 22:47:07.235 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 22:52:07.237 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 22:57:07.250 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 23:02:07.266 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 23:07:07.272 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 23:12:07.275 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 23:17:07.279 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 23:22:07.284 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 23:27:07.287 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 23:32:07.292 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 23:37:07.300 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-07 23:42:07.308 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration

@@ -1,0 +1,95 @@
+global:
+  imagePullPolicy: IfNotPresent
+  eureka:
+    defaultZone: "http://eureka-server:8761/eureka/"
+  environment: production
+
+gateway-service:
+  replicaCount: 2
+  image:
+    repository: myregistry/gateway-service
+    tag: "latest"
+  service:
+    type: ClusterIP
+    port: 8080
+
+auth-service:
+  replicaCount: 2
+  image:
+    repository: myregistry/auth-service
+    tag: "latest"
+  service:
+    type: ClusterIP
+    port: 8081
+
+user-service:
+  replicaCount: 2
+  image:
+    repository: myregistry/user-service
+    tag: "latest"
+  service:
+    type: ClusterIP
+    port: 8082
+
+public-event-service:
+  replicaCount: 2
+  image:
+    repository: myregistry/public-event-service
+    tag: "latest"
+  service:
+    type: ClusterIP
+    port: 8083
+
+admin-event-service:
+  replicaCount: 2
+  image:
+    repository: myregistry/admin-event-service
+    tag: "latest"
+  service:
+    type: ClusterIP
+    port: 8085
+
+booking-service:
+  replicaCount: 2
+  image:
+    repository: myregistry/booking-service
+    tag: "latest"
+  service:
+    type: ClusterIP
+    port: 8087
+
+ticketing-service:
+  replicaCount: 2
+  image:
+    repository: myregistry/ticketing-service
+    tag: "latest"
+  service:
+    type: ClusterIP
+    port: 8088
+
+payment-service:
+  replicaCount: 1
+  image:
+    repository: myregistry/payment-service
+    tag: "latest"
+  service:
+    type: ClusterIP
+    port: 8089
+
+notification-service:
+  replicaCount: 2
+  image:
+    repository: myregistry/notification-service
+    tag: "latest"
+  service:
+    type: ClusterIP
+    port: 8090
+
+analytics-service:
+  replicaCount: 1
+  image:
+    repository: myregistry/analytics-service
+    tag: "latest"
+  service:
+    type: ClusterIP
+    port: 8086

@@ -1,0 +1,76 @@
+2025-03-09 01:37:06.985 INFO  c.e.auth.AuthServiceApplication - Starting AuthServiceApplication using Java 17.0.11 on KOMPUTER with PID 12820 (C:\MyProjects\Diplom\MSE-OSW-root\auth-service\target\classes started by Никита in C:\MyProjects\Diplom\MSE-OSW-root)
+2025-03-09 01:37:06.995 INFO  c.e.auth.AuthServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-09 01:37:07.939 INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=b40859f8-0cf6-3b72-bf15-d2a597010aa4
+2025-03-09 01:37:08.017 INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-03-09 01:37:08.022 INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-03-09 01:37:08.025 INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-03-09 01:37:08.339 INFO  o.s.b.a.s.r.ReactiveUserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 80dad013-458f-4c8a-9891-7851dbad2bb8
+
+2025-03-09 01:37:10.148 INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2025-03-09 01:37:10.189 INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate.
+2025-03-09 01:37:11.399 INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2025-03-09 01:37:12.583 INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2025-03-09 01:37:12.622 WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-03-09 01:37:12.657 INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2025-03-09 01:37:12.724 INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2025-03-09 01:37:12.728 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 01:37:12.747 INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false
+2025-03-09 01:37:12.748 INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2025-03-09 01:37:12.748 INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2025-03-09 01:37:12.749 INFO  c.netflix.discovery.DiscoveryClient - Application is null : false
+2025-03-09 01:37:12.749 INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2025-03-09 01:37:12.749 INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true
+2025-03-09 01:37:12.749 INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2025-03-09 01:37:13.159 INFO  c.netflix.discovery.DiscoveryClient - The response status is 200
+2025-03-09 01:37:13.162 INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2025-03-09 01:37:13.166 INFO  c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2025-03-09 01:37:13.173 INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1741459033172 with initial instances count: 0
+2025-03-09 01:37:13.175 INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application AUTH-SERVICE with eureka with status UP
+2025-03-09 01:37:13.176 INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1741459033176, current=UP, previous=STARTING]
+2025-03-09 01:37:13.179 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_AUTH-SERVICE/localhost:auth-service:8081: registering service...
+2025-03-09 01:37:13.227 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_AUTH-SERVICE/localhost:auth-service:8081 - registration status: 204
+2025-03-09 01:37:13.361 INFO  o.s.b.w.e.netty.NettyWebServer - Netty started on port 8081
+2025-03-09 01:37:13.362 INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8081
+2025-03-09 01:37:14.553 INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2025-03-09 01:37:15.677 INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2025-03-09 01:37:15.684 INFO  c.e.auth.AuthServiceApplication - Started AuthServiceApplication in 10.394 seconds (JVM running for 10.918)
+2025-03-09 01:37:43.166 INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false
+2025-03-09 01:37:43.167 INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2025-03-09 01:37:43.167 INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2025-03-09 01:37:43.168 INFO  c.netflix.discovery.DiscoveryClient - Application is null : false
+2025-03-09 01:37:43.168 INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2025-03-09 01:37:43.168 INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: false
+2025-03-09 01:37:43.168 INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2025-03-09 01:37:43.191 INFO  c.netflix.discovery.DiscoveryClient - The response status is 200
+2025-03-09 01:42:12.754 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 01:47:12.769 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 01:52:12.771 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 01:57:12.777 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 02:02:12.787 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 02:07:12.795 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 02:12:12.805 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 02:17:12.821 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 02:22:12.825 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 02:27:12.839 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 02:32:12.861 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 02:37:12.867 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 02:42:12.881 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 02:47:12.893 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 02:52:12.906 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 02:57:12.910 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 03:02:12.922 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 03:07:12.925 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 03:12:12.940 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 03:17:12.947 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 03:22:12.960 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 03:27:12.969 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 03:32:12.981 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 03:37:12.998 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 03:42:13.011 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 03:47:13.021 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 03:52:13.031 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 03:57:13.045 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 04:02:13.047 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-09 04:07:13.059 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration

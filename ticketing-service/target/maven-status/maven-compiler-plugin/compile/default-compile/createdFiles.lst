@@ -1,0 +1,5 @@
+com\example\ticketing\service\TicketService.class
+com\example\ticketing\controller\TicketController.class
+com\example\ticketing\repository\TicketRepository.class
+com\example\ticketing\TicketingServiceApplication.class
+com\example\ticketing\model\Ticket.class

@@ -1,0 +1,7 @@
+com\example\content\repository\ContentRepository.class
+com\example\content\controller\ContentController.class
+com\example\content\model\ContentItem.class
+com\example\content\model\Seat.class
+com\example\content\model\SeatingPlan.class
+com\example\content\ContentServiceApplication.class
+com\example\content\service\ContentService.class

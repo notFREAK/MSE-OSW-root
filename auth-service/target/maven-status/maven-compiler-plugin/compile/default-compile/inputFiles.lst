@@ -1,0 +1,11 @@
+C:\MyProjects\Diplom\MSE-OSW-root\auth-service\src\main\java\com\example\auth\config\HttpMessageConvertersConfig.java
+C:\MyProjects\Diplom\MSE-OSW-root\auth-service\src\main\java\com\example\auth\dto\UserDto.java
+C:\MyProjects\Diplom\MSE-OSW-root\auth-service\src\main\java\com\example\auth\controller\AuthController.java
+C:\MyProjects\Diplom\MSE-OSW-root\auth-service\src\main\java\com\example\auth\config\SecurityConfig.java
+C:\MyProjects\Diplom\MSE-OSW-root\auth-service\src\main\java\com\example\auth\client\UserManagementClient.java
+C:\MyProjects\Diplom\MSE-OSW-root\auth-service\src\main\java\com\example\auth\service\AuthService.java
+C:\MyProjects\Diplom\MSE-OSW-root\auth-service\src\main\java\com\example\auth\model\AuthRequest.java
+C:\MyProjects\Diplom\MSE-OSW-root\auth-service\src\main\java\com\example\auth\dto\UserRegistrationRequest.java
+C:\MyProjects\Diplom\MSE-OSW-root\auth-service\src\main\java\com\example\auth\model\AuthResponse.java
+C:\MyProjects\Diplom\MSE-OSW-root\auth-service\src\main\java\com\example\auth\AuthServiceApplication.java
+C:\MyProjects\Diplom\MSE-OSW-root\auth-service\src\main\java\com\example\auth\model\RefreshRequest.java

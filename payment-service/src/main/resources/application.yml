@@ -1,0 +1,12 @@
+server:
+  port: 8089
+
+spring:
+  application:
+    name: payment-service
+
+# Настройка Eureka Client для регистрации в Eureka (если используется)
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
