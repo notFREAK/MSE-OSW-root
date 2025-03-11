@@ -50,70 +50,32 @@ pipeline {
         stage('Build Docker Images') {
             steps {
                 script {
-                    parallel(
-                        "Build gateway-service": {
-                            dir('gateway-service') {
-                                echo "Building gateway-service..."
-                                bat "docker build -t %DOCKER_REGISTRY%/gateway-service:%APP_VERSION% ."
-                            }
-                        },
-                        "Build auth-service": {
-                            dir('auth-service') {
-                                echo "Building auth-service..."
-                                bat "docker build -t %DOCKER_REGISTRY%/auth-service:%APP_VERSION% ."
-                            }
-                        },
-                        "Build user-service": {
-                            dir('user-service') {
-                                echo "Building user-service..."
-                                bat "docker build -t %DOCKER_REGISTRY%/user-service:%APP_VERSION% ."
-                            }
-                        },
-                        "Build public-event-service": {
-                            dir('public-event-service') {
-                                echo "Building public-event-service..."
-                                bat "docker build -t %DOCKER_REGISTRY%/public-event-service:%APP_VERSION% ."
-                            }
-                        },
-                        "Build admin-event-service": {
-                            dir('admin-event-service') {
-                                echo "Building admin-event-service..."
-                                bat "docker build -t %DOCKER_REGISTRY%/admin-event-service:%APP_VERSION% ."
-                            }
-                        },
-                        "Build booking-service": {
-                            dir('booking-service') {
-                                echo "Building booking-service..."
-                                bat "docker build -t %DOCKER_REGISTRY%/booking-service:%APP_VERSION% ."
-                            }
-                        },
-                        "Build ticketing-service": {
-                            dir('ticketing-service') {
-                                echo "Building ticketing-service..."
-                                bat "docker build -t %DOCKER_REGISTRY%/ticketing-service:%APP_VERSION% ."
-                            }
-                        },
-                        "Build payment-service": {
-                            dir('payment-service') {
-                                echo "Building payment-service..."
-                                bat "docker build -t %DOCKER_REGISTRY%/payment-service:%APP_VERSION% ."
-                            }
-                        },
-                        "Build notification-service": {
-                            dir('notification-service') {
-                                echo "Building notification-service..."
-                                bat "docker build -t %DOCKER_REGISTRY%/notification-service:%APP_VERSION% ."
-                            }
-                        },
-                        "Build analytics-service": {
-                            dir('analytics-service') {
-                                echo "Building analytics-service..."
-                                bat "docker build -t %DOCKER_REGISTRY%/analytics-service:%APP_VERSION% ."
-                            }
-                        }
-                    )
+                def modules = [
+                "gateway-service",
+                "auth-service",
+                "user-service",
+                "public-event-service",
+                "admin-event-service",
+                "booking-service",
+                "ticketing-service",
+                "payment-service",
+                "notification-service",
+                "analytics-service"
+            ]
+            def builds = [:]
+            for (module in modules) {
+                // Для каждого модуля создадим ветку в параллельном запуске
+                builds[module] = {
+                    dir(module) {
+                        echo "Сборка образа для ${module}..."
+                        bat "docker build"
+                    }
                 }
             }
+            // Запускаем параллельно сборку всех модулей
+            parallel builds
+            }
+        }
         }
         stage('Push Docker Images') {
             steps {
