@@ -16,9 +16,34 @@ pipeline {
             }
         }
         stage('List Resources') {
-            steps {
-                bat 'dir /s /b src\\main\\resources'
+        steps {
+        script {
+            // Определим список каталогов, где находятся проекты с pom.xml
+            def modules = [
+                "gateway-service",
+                "auth-service",
+                "user-service",
+                "public-event-service",
+                "admin-event-service",
+                "booking-service",
+                "ticketing-service",
+                "payment-service",
+                "notification-service",
+                "analytics-service"
+            ]
+            def builds = [:]
+            for (module in modules) {
+                // Для каждого модуля создадим ветку в параллельном запуске
+                builds[module] = {
+                    dir(module) {
+                    bat 'dir /s /b src\\main\\resources'
+                    }
+                }
             }
+            // Запускаем параллельно сборку всех модулей
+            parallel builds
+        }
+        }
         }
         stage('Build & Test') {
         steps {
