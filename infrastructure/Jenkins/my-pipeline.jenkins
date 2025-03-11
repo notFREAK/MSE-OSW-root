@@ -15,6 +15,11 @@ pipeline {
                 checkout scm
             }
         }
+        stage('List Resources') {
+            steps {
+                bat 'dir /s /b src\\main\\resources'
+            }
+        }
         stage('Build & Test') {
         steps {
         script {
