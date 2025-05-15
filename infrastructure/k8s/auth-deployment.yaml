@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: auth-service
-        image: myregistry/my-auth-service:latest
+        image: local-registry/my-auth-service:latest
         ports:
         - containerPort: 8081
         resources:

@@ -1,8 +1,8 @@
-c:\MyProjects\Diplom\MSE-OSW-root\public-event-service\src\main\java\com\example\event\publicservice\PublicEventServiceApplication.java
-c:\MyProjects\Diplom\MSE-OSW-root\public-event-service\src\main\java\com\example\event\publicservice\repository\EventRepository.java
-c:\MyProjects\Diplom\MSE-OSW-root\public-event-service\src\main\java\com\example\event\publicservice\service\EventService.java
-c:\MyProjects\Diplom\MSE-OSW-root\public-event-service\src\main\java\com\example\event\publicservice\config\RestTemplateConfig.java
-c:\MyProjects\Diplom\MSE-OSW-root\public-event-service\src\main\java\com\example\event\publicservice\controller\EventController.java
-c:\MyProjects\Diplom\MSE-OSW-root\public-event-service\src\main\java\com\example\event\publicservice\client\ContentServiceClient.java
-c:\MyProjects\Diplom\MSE-OSW-root\public-event-service\src\main\java\com\example\event\publicservice\dto\EventResponse.java
-c:\MyProjects\Diplom\MSE-OSW-root\public-event-service\src\main\java\com\example\event\publicservice\model\Event.java
+C:\MyProjects\Diplom\MSE-OSW-root\public-event-service\src\main\java\com\example\event\publicservice\PublicEventServiceApplication.java
+C:\MyProjects\Diplom\MSE-OSW-root\public-event-service\src\main\java\com\example\event\publicservice\repository\EventRepository.java
+C:\MyProjects\Diplom\MSE-OSW-root\public-event-service\src\main\java\com\example\event\publicservice\service\EventService.java
+C:\MyProjects\Diplom\MSE-OSW-root\public-event-service\src\main\java\com\example\event\publicservice\config\RestTemplateConfig.java
+C:\MyProjects\Diplom\MSE-OSW-root\public-event-service\src\main\java\com\example\event\publicservice\controller\EventController.java
+C:\MyProjects\Diplom\MSE-OSW-root\public-event-service\src\main\java\com\example\event\publicservice\client\ContentServiceClient.java
+C:\MyProjects\Diplom\MSE-OSW-root\public-event-service\src\main\java\com\example\event\publicservice\dto\EventResponse.java
+C:\MyProjects\Diplom\MSE-OSW-root\public-event-service\src\main\java\com\example\event\publicservice\model\Event.java

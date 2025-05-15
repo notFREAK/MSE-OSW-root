@@ -1,7 +1,7 @@
 replicaCount: 2
 
 image:
-  repository: myregistry/auth-service
+  repository: localhost:5000//auth-service
   tag: "latest"
   pullPolicy: IfNotPresent
 

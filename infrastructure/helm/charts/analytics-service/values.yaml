@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: myregistry/analytics-service
+  repository: localhost:5000//analytics-service
   tag: "latest"
   pullPolicy: IfNotPresent
 

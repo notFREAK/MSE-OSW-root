@@ -1,0 +1,144 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKER_REGISTRY = "myregistry.example.com"
+        APP_VERSION = "${env.BUILD_NUMBER}"
+        KUBE_NAMESPACE = "my-namespace"
+        HELM_CHART_PATH = "C:/MyProjects/Diplom/MSE-OSW-root/infrastructure/helm"
+        KUBECONFIG = 'C:/Users/Никита/.kube/config'
+    }
+
+    stages {
+        stage('Set Local Workspace') {
+            steps {
+                echo "Используем локальный workspace: C:\\MyProjects\\Diplom\\MSE-OSW-root\\"
+                dir("C:/MyProjects/Diplom/MSE-OSW-root") {
+                    bat "dir"
+                }
+            }
+        }
+        stage('Build & Test') {
+            steps {
+                script {
+                    def modules = [
+                        "gateway-service",
+                        "auth-service",
+                        "user-service",
+                        "public-event-service",
+                        "admin-event-service",
+                        "booking-service",
+                        "ticketing-service",
+                        "payment-service",
+                        "notification-service",
+                        "analytics-service"
+                    ]
+                    def builds = [:]
+                    for (module in modules) {
+                        builds[module] = {
+                            dir("C:/MyProjects/Diplom/MSE-OSW-root/" + module) {
+                                echo "Сборка и тестирование ${module}..."
+                                bat "mvn clean package -X -DskipTests"
+                                bat "mvn test"
+                            }
+                        }
+                    }
+                    builds
+                }
+            }
+        }
+        stage('Build Docker Images') {
+            steps {
+                script {
+                    def modules = [
+                        "gateway-service",
+                        "auth-service",
+                        "user-service",
+                        "public-event-service",
+                        "admin-event-service",
+                        "booking-service",
+                        "ticketing-service",
+                        "payment-service",
+                        "notification-service",
+                        "analytics-service"
+                    ]
+                    def builds = [:]
+                    for (module in modules) {
+                        builds[module] = {
+                            dir("C:/MyProjects/Diplom/MSE-OSW-root/" + module) {
+                                echo "Сборка Docker образа для ${module}..."
+                                bat "docker build -t ${module}:${APP_VERSION} ."
+                                bat "docker tag ${module}:${APP_VERSION} localhost:5000/${module}:${APP_VERSION}"
+                            }
+                        }
+                    }
+                    builds
+                }
+            }
+        }
+        stage('Check Cluster Connection') {
+            steps {
+                echo "Проверка подключения к кластеру..."
+                bat "kubectl cluster-info"
+            }
+        }
+        stage('Push Docker Images') {
+             steps {
+                script {
+                    def modules = [
+                        "gateway-service",
+                        "auth-service",
+                        "user-service",
+                        "public-event-service",
+                        "admin-event-service",
+                        "booking-service",
+                        "ticketing-service",
+                        "payment-service",
+                        "notification-service",
+                        "analytics-service"
+                    ]
+                    def builds = [:]
+                    for (module in modules) {
+                        builds[module] = {
+                            dir("C:/MyProjects/Diplom/MSE-OSW-root/" + module) {
+                                echo "Отправка в rep Docker образа для ${module}..."
+                                bat "docker push localhost:5000/${module}:${APP_VERSION}"
+                            }
+                        }
+                    }
+                    builds
+                }
+            }
+        }
+        stage('Deploy to Kubernetes') {
+            steps {
+                echo "Деплой в Kubernetes через Helm..."
+                bat """
+                    helm upgrade --install my-microservices ${HELM_CHART_PATH} --namespace ${KUBE_NAMESPACE} \
+                      --set global.eureka.defaultZone="http://eureka-server:8761/eureka/" \
+                      --set gateway-service.image.tag=${APP_VERSION} \
+                      --set auth-service.image.tag=${APP_VERSION} \
+                      --set user-service.image.tag=${APP_VERSION} \
+                      --set public-event-service.image.tag=${APP_VERSION} \
+                      --set admin-event-service.image.tag=${APP_VERSION} \
+                      --set booking-service.image.tag=${APP_VERSION} \
+                      --set ticketing-service.image.tag=${APP_VERSION} \
+                      --set payment-service.image.tag=${APP_VERSION} \
+                      --set notification-service.image.tag=${APP_VERSION} \
+                      --set analytics-service.image.tag=${APP_VERSION}
+                """
+            }
+        }
+    }
+    post {
+        success {
+            echo "Pipeline выполнен успешно!"
+        }
+        failure {
+            echo "Ошибка выполнения Pipeline!"
+        }
+        always {
+            cleanWs()
+        }
+    }
+}

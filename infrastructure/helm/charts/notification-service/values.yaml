@@ -1,7 +1,7 @@
 replicaCount: 2
 
 image:
-  repository: myregistry/notification-service
+  repository: localhost:5000//notification-service
   tag: "latest"
   pullPolicy: IfNotPresent
 

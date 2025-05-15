@@ -1,4 +1,5 @@
 com\example\event\publicservice\client\ContentServiceClient.class
+com\example\event\publicservice\config\RestTemplateConfig.class
 com\example\event\publicservice\PublicEventServiceApplication.class
 com\example\event\publicservice\controller\EventController.class
 com\example\event\publicservice\model\Event.class

@@ -74,3 +74,29 @@ Using generated security password: 80dad013-458f-4c8a-9891-7851dbad2bb8
 2025-03-09 03:57:13.045 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
 2025-03-09 04:02:13.047 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
 2025-03-09 04:07:13.059 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-03-11 13:58:46.187 INFO  c.e.auth.AuthServiceApplication - Starting AuthServiceApplication using Java 17.0.11 on KOMPUTER with PID 36936 (C:\MyProjects\Diplom\MSE-OSW-root\auth-service\target\classes started by Никита in C:\MyProjects\Diplom\MSE-OSW-root)
+2025-03-11 13:58:46.189 INFO  c.e.auth.AuthServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-11 13:58:47.078 INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=b40859f8-0cf6-3b72-bf15-d2a597010aa4
+2025-03-11 13:58:47.169 INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-03-11 13:58:47.172 INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-03-11 13:58:47.175 INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-03-11 13:58:47.724 INFO  o.s.c.o.FeignClientFactoryBean - For 'user-service' URL not provided. Will try picking an instance via load-balancing.
+2025-03-11 13:58:47.807 WARN  o.s.b.w.r.c.AnnotationConfigReactiveWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authController' defined in file [C:\MyProjects\Diplom\MSE-OSW-root\auth-service\target\classes\com\example\auth\controller\AuthController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authService' defined in file [C:\MyProjects\Diplom\MSE-OSW-root\auth-service\target\classes\com\example\auth\service\AuthService.class]: Unsatisfied dependency expressed through constructor parameter 1; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.springframework.security.crypto.password.PasswordEncoder' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-03-11 13:58:47.831 INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2025-03-11 13:58:47.871 ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 1 of constructor in com.example.auth.service.AuthService required a bean of type 'org.springframework.security.crypto.password.PasswordEncoder' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.security.crypto.password.PasswordEncoder' in your configuration.
+

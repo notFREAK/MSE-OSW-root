@@ -1,7 +1,7 @@
 replicaCount: 2
 
 image:
-  repository: myregistry/public-event-service
+  repository: localhost:5000//public-event-service
   tag: "latest"
   pullPolicy: IfNotPresent
 

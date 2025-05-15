@@ -1,7 +1,7 @@
 replicaCount: 2
 
 image:
-  repository: myregistry/admin-event-service
+  repository: localhost:5000/admin-event-service
   tag: "latest"
   pullPolicy: IfNotPresent
 

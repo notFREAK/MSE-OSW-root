@@ -1,7 +1,7 @@
 replicaCount: 2
 
 image:
-  repository: myregistry/ticketing-service
+  repository: localhost:5000//ticketing-service
   tag: "latest"
   pullPolicy: IfNotPresent
 

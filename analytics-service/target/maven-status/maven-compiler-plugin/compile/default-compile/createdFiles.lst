@@ -1,0 +1,5 @@
+com\example\analytics\controller\AnalyticsController.class
+com\example\analytics\model\Report.class
+com\example\analytics\consumer\EventConsumer.class
+com\example\analytics\service\AnalyticsService.class
+com\example\analytics\AnalyticsServiceApplication.class

@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: myregistry/payment-service
+  repository: localhost:5000//payment-service
   tag: "latest"
   pullPolicy: IfNotPresent
 

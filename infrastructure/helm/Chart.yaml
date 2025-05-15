@@ -19,7 +19,7 @@ dependencies:
     repository: file://charts/public-event-service
   - name: admin-event-service
     version: 0.1.0
-    repository: file://charts/admin-event-service
+    repository: file://charts/admin-event-serviceс
   - name: booking-service
     version: 0.1.0
     repository: file://charts/booking-service
