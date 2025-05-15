@@ -72,7 +72,7 @@ pipeline {
             def helmCmd = "helm upgrade --install my-microservices " +
                           "${HELM_CHART_PATH} " +
                           "--namespace ${KUBE_NAMESPACE} " +
-                          "--set global.eureka.defaultZone=\"http://eureka-server:8761/eureka/\" " +
+                          "--set global.eureka.defaultZone=\"http://localhost:8761/eureka/\" " +
                           "${setArgs}"
 
             bat helmCmd
