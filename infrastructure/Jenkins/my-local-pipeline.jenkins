@@ -68,7 +68,7 @@ pipeline {
                             dir("C:/MyProjects/Diplom/MSE-OSW-root/" + module) {
                                 echo "Сборка Docker образа для ${module}..."
                                 bat "docker build -t ${module}:${APP_VERSION} ."
-                                bat "docker tag ${module}:${APP_VERSION} localhost:5000/${module}:${APP_VERSION}"
+                                bat "docker tag ${module}:${APP_VERSION} localhost:5000/${module}:${APP_VERSION} ."
                             }
                         }
                     }
@@ -102,7 +102,8 @@ pipeline {
                         builds[module] = {
                             dir("C:/MyProjects/Diplom/MSE-OSW-root/" + module) {
                                 echo "Отправка в rep Docker образа для ${module}..."
-                                bat "docker push localhost:5000/${module}:${APP_VERSION}"
+                                bat "docker tag ${module}:${APP_VERSION} localhost:5000/${module}:${APP_VERSION} ."
+                                bat "docker push localhost:5000/${module}:${APP_VERSION} ."
                             }
                         }
                     }
