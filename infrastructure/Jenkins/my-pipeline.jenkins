@@ -54,32 +54,33 @@ pipeline {
         }
       }
     }
-
     stage('Deploy to Kubernetes') {
-        steps {
-            script {
-            // исходный список модулей
-             def modules = [
-            "gateway-service","auth-service","user-service",
-            "public-event-service","admin-event-service","booking-service",
-            "ticketing-service","payment-service","notification-service","analytics-service"
+      steps {
+        // раскрываем секретный файл в переменную KUBECONFIG
+        withCredentials([file(credentialsId: 'kubeconfig-file', variable: 'KUBECONFIG')]) {
+          // проверим соединение
+          bat 'kubectl cluster-info'
+
+          // выполняем Helm-апгрейд
+          script {
+            def modules = [
+              "gateway-service","auth-service","user-service",
+              "public-event-service","admin-event-service","booking-service",
+              "ticketing-service","payment-service","notification-service","analytics-service"
             ]
-            // соберём все --set … флаги одним параметром
-             def setArgs = modules
-                       .collect { "--set ${it}.image.tag=${APP_VERSION}" }
-                       .join(' ')
-            // соберём команду целиком в одну Groovy-строку
+            def setArgs = modules.collect { "--set ${it}.image.tag=${APP_VERSION}" }.join(' ')
             def helmCmd = "helm upgrade --install my-microservices " +
-                        "${HELM_CHART_PATH} " +
-                        "--namespace ${KUBE_NAMESPACE} " +
-                        "--set global.eureka.defaultZone=\\\"http://eureka-server:8761/eureka/\\\" " +
-                        "${setArgs}"
-      // и запустим
+                          "${HELM_CHART_PATH} " +
+                          "--namespace ${KUBE_NAMESPACE} " +
+                          "--set global.eureka.defaultZone=\"http://eureka-server:8761/eureka/\" " +
+                          "${setArgs}"
+
             bat helmCmd
-            }
-        }   
+          }
+        }
+      }
     }
-}
+  }
   post {
     success { echo "Pipeline выполнен успешно!" }
     failure { echo "Есть ошибки в сборке." }
