@@ -1,200 +1,86 @@
 pipeline {
-    agent any
+  agent any
 
-    environment {
-        DOCKER_REGISTRY = "myregistry.example.com"
-        APP_VERSION = "${env.BUILD_NUMBER}"
-        KUBE_NAMESPACE = "my-namespace"
-        HELM_CHART_PATH = "infrastructure/helm/my-microservices-chart"
+  environment {
+    DOCKER_REGISTRY = "myregistry.example.com"
+    APP_VERSION     = "${env.BUILD_NUMBER}"
+    KUBE_NAMESPACE  = "my-namespace"
+    BASE_DIR        = "${env.WORKSPACE}"
+    HELM_CHART_PATH = "${BASE_DIR}/infrastructure/helm"
+    KUBECONFIG      = "${BASE_DIR}/.kube/config"
+  }
+
+  stages {
+    stage('Checkout') {
+      steps { checkout scm }
     }
 
-    stages {
-        stage('Checkout') {
-            steps {
-                echo "Checking out source code..."
-                checkout scm
-            }
-        }
-        stage('List Resources') {
-        steps {
+    stage('Build & Test') {
+      steps {
         script {
-            // Определим список каталогов, где находятся проекты с pom.xml
-            def modules = [
-                "gateway-service",
-                "auth-service",
-                "user-service",
-                "public-event-service",
-                "admin-event-service",
-                "booking-service",
-                "ticketing-service",
-                "payment-service",
-                "notification-service",
-                "analytics-service"
-            ]
-            def builds = [:]
-            for (module in modules) {
-                // Для каждого модуля создадим ветку в параллельном запуске
-                builds[module] = {
-                    dir(module) {
-                    bat 'dir /s /b src\\main\\resources'
-                    }
-                }
+          def mods = ["gateway","auth","user","public-event","admin-event","booking","ticketing","payment","notification","analytics"].collect { it + "-service" }
+          def tasks = [:]
+          for (m in mods) {
+            tasks[m] = {
+              dir("${BASE_DIR}/${m}") {
+                echo "→ Building ${m}"
+                bat 'mvn clean package -DskipTests'
+                bat 'mvn test'
+              }
             }
-            // Запускаем параллельно сборку всех модулей
-            parallel builds
+          }
+          tasks
         }
-        }
-        }
-        stage('Build & Test') {
-        steps {
+      }
+    }
+
+    stage('Build & Push Docker Images') {
+      steps {
         script {
-            // Определим список каталогов, где находятся проекты с pom.xml
-            def modules = [
-                "gateway-service",
-                "auth-service",
-                "user-service",
-                "public-event-service",
-                "admin-event-service",
-                "booking-service",
-                "ticketing-service",
-                "payment-service",
-                "notification-service",
-                "analytics-service"
-            ]
-            def builds = [:]
-            for (module in modules) {
-                // Для каждого модуля создадим ветку в параллельном запуске
-                builds[module] = {
-                    dir(module) {
-                        echo "Building and testing ${module}..."
-                        bat "mvn clean package -DskipTests"
-                        bat "mvn test"
-                    }
-                }
+          def mods = ["gateway","auth","user","public-event","admin-event","booking","ticketing","payment","notification","analytics"].collect { it + "-service" }
+          def tasks = [:]
+          for (m in mods) {
+            tasks[m] = {
+              dir("${BASE_DIR}/${m}") {
+                echo "→ Docker build & push ${m}"
+                bat "docker build -t ${DOCKER_REGISTRY}/${m}:${APP_VERSION} ."
+                bat "docker push ${DOCKER_REGISTRY}/${m}:${APP_VERSION}"
+              }
             }
-            // Запускаем параллельно сборку всех модулей
-            parallel builds
+          }
+          parallel tasks
         }
-        }
-        }
-        stage('Build Docker Images') {
-            steps {
-                script {
-                def modules = [
-                "gateway-service",
-                "auth-service",
-                "user-service",
-                "public-event-service",
-                "admin-event-service",
-                "booking-service",
-                "ticketing-service",
-                "payment-service",
-                "notification-service",
-                "analytics-service"
-            ]
-            def builds = [:]
-            for (module in modules) {
-                // Для каждого модуля создадим ветку в параллельном запуске
-                builds[module] = {
-                    dir(module) {
-                        echo "Сборка образа для ${module}..."
-                        bat "docker build"
-                    }
-                }
-            }
-            // Запускаем параллельно сборку всех модулей
-            parallel builds
-            }
-        }
-        }
-         stage('Push Docker Images') {
-            steps {
-                script {
-                    echo "Pushing Docker images locally (no registry authentication)..."
-                    parallel(
-                        "Push gateway-service": {
-                            dir('gateway-service') {
-                                bat "docker push gateway-service:${APP_VERSION}"
-                            }
-                        },
-                        "Push auth-service": {
-                            dir('auth-service') {
-                                bat "docker push auth-service:${APP_VERSION}"
-                            }
-                        },
-                        "Push user-service": {
-                            dir('user-service') {
-                                bat "docker push user-service:${APP_VERSION}"
-                            }
-                        },
-                        "Push public-event-service": {
-                            dir('public-event-service') {
-                                bat "docker push public-event-service:${APP_VERSION}"
-                            }
-                        },
-                        "Push admin-event-service": {
-                            dir('admin-event-service') {
-                                bat "docker push admin-event-service:${APP_VERSION}"
-                            }
-                        },
-                        "Push booking-service": {
-                            dir('booking-service') {
-                                bat "docker push booking-service:${APP_VERSION}"
-                            }
-                        },
-                        "Push ticketing-service": {
-                            dir('ticketing-service') {
-                                bat "docker push ticketing-service:${APP_VERSION}"
-                            }
-                        },
-                        "Push payment-service": {
-                            dir('payment-service') {
-                                bat "docker push payment-service:${APP_VERSION}"
-                            }
-                        },
-                        "Push notification-service": {
-                            dir('notification-service') {
-                                bat "docker push notification-service:${APP_VERSION}"
-                            }
-                        },
-                        "Push analytics-service": {
-                            dir('analytics-service') {
-                                bat "docker push analytics-service:${APP_VERSION}"
-                            }
-                        }
-                    )
-                }
-            }
-        }
-        stage('Deploy to Kubernetes') {
-            steps {
-                echo "Deploying to Kubernetes using Helm..."
-                bat """
-                    helm upgrade --install my-microservices %HELM_CHART_PATH% --namespace %KUBE_NAMESPACE% \
-                      --set global.eureka.defaultZone="http://eureka-server:8761/eureka/" \
-                      --set gateway-service.image.tag=${APP_VERSION} \
-                      --set auth-service.image.tag=${APP_VERSION} \
-                      --set user-service.image.tag=${APP_VERSION} \
-                      --set public-event-service.image.tag=${APP_VERSION} \
-                      --set admin-event-service.image.tag=${APP_VERSION} \
-                      --set booking-service.image.tag=${APP_VERSION} \
-                      --set ticketing-service.image.tag=${APP_VERSION} \
-                      --set payment-service.image.tag=${APP_VERSION} \
-                      --set notification-service.image.tag=${APP_VERSION} \
-                      --set analytics-service.image.tag=${APP_VERSION}
-                """
-            }
-        }
+      }
     }
-    post {
-        success {
-            echo "Pipeline executed successfully!"
-        }
-        failure {
-            echo "Pipeline execution failed!"
-        }
-        always {
-            cleanWs()
-        }
+
+    stage('Deploy to Kubernetes') {
+        steps {
+            script {
+            // исходный список модулей
+             def modules = [
+            "gateway-service","auth-service","user-service",
+            "public-event-service","admin-event-service","booking-service",
+            "ticketing-service","payment-service","notification-service","analytics-service"
+            ]
+            // соберём все --set … флаги одним параметром
+             def setArgs = modules
+                       .collect { "--set ${it}.image.tag=${APP_VERSION}" }
+                       .join(' ')
+            // соберём команду целиком в одну Groovy-строку
+            def helmCmd = "helm upgrade --install my-microservices " +
+                        "${HELM_CHART_PATH} " +
+                        "--namespace ${KUBE_NAMESPACE} " +
+                        "--set global.eureka.defaultZone=\\\"http://eureka-server:8761/eureka/\\\" " +
+                        "${setArgs}"
+      // и запустим
+            bat helmCmd
+            }
+        }   
     }
+}
+  post {
+    success { echo "Pipeline выполнен успешно!" }
+    failure { echo "Есть ошибки в сборке." }
+    always  { cleanWs() }
+  }
 }
