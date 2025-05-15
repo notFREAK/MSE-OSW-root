@@ -1,4 +1,7 @@
-FROM openjdk:17-jre-slim
-COPY target/analytics-service.jar /app/analytics-service.jar
+
+FROM openjdk:17-jdk-slim
+VOLUME /tmp
+ARG JAR_FILE=target/analytics-service-1.0.0.jar
+COPY ${JAR_FILE} app.jar
 EXPOSE 8086
-ENTRYPOINT ["java", "-jar", "/app/analytics-service.jar"]
+ENTRYPOINT ["java", "-jar", "/app.jar"]
