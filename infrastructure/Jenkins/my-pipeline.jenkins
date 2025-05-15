@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-    DOCKER_REGISTRY = "myregistry.example.com"
+    DOCKER_REGISTRY = "localhost:5000"
     APP_VERSION     = "${env.BUILD_NUMBER}"
     KUBE_NAMESPACE  = "my-namespace"
     BASE_DIR        = "${env.WORKSPACE}"
@@ -21,15 +21,16 @@ pipeline {
           def mods = ["gateway","auth","user","public-event","admin-event","booking","ticketing","payment","notification","analytics"].collect { it + "-service" }
           def tasks = [:]
           for (m in mods) {
-            tasks[m] = {
-              dir("${BASE_DIR}/${m}") {
-                echo "→ Building ${m}"
+            def moduleName = m
+            tasks[moduleName] = {
+              dir("${BASE_DIR}/${moduleName}") {
+                echo "→ Building ${moduleName}"
                 bat 'mvn clean package -DskipTests'
                 bat 'mvn test'
               }
             }
           }
-          tasks
+          parallel tasks
         }
       }
     }
@@ -40,11 +41,12 @@ pipeline {
           def mods = ["gateway","auth","user","public-event","admin-event","booking","ticketing","payment","notification","analytics"].collect { it + "-service" }
           def tasks = [:]
           for (m in mods) {
-            tasks[m] = {
-              dir("${BASE_DIR}/${m}") {
-                echo "→ Docker build & push ${m}"
-                bat "docker build -t ${DOCKER_REGISTRY}/${m}:${APP_VERSION} ."
-                bat "docker push ${DOCKER_REGISTRY}/${m}:${APP_VERSION}"
+            def moduleName = m
+            tasks[moduleName] = {
+              dir("${BASE_DIR}/${moduleName}") {
+                echo "→ Docker build & push ${moduleName}"
+                bat "docker build -t ${DOCKER_REGISTRY}/${moduleName}:${APP_VERSION} ."
+                bat "docker push ${DOCKER_REGISTRY}/${moduleName}:${APP_VERSION}"
               }
             }
           }
