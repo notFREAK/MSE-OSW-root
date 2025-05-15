@@ -1,4 +1,0 @@
-FROM openjdk:11-jre-slim
-COPY target/booking-service.jar /app/booking-service.jar
-EXPOSE 8087
-ENTRYPOINT ["java", "-jar", "/app/booking-service.jar"]
