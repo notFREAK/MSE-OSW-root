@@ -7,7 +7,7 @@ global:
 gateway-service:
   replicaCount: 2
   image:
-    repository: localhost:5000//gateway-service
+    repository: localhost:5000/gateway-service
     tag: "latest"
   service:
     type: ClusterIP
@@ -16,7 +16,7 @@ gateway-service:
 auth-service:
   replicaCount: 2
   image:
-    repository: localhost:5000//auth-service
+    repository: localhost:5000/auth-service
     tag: "latest"
   service:
     type: ClusterIP
@@ -25,7 +25,7 @@ auth-service:
 user-service:
   replicaCount: 2
   image:
-    repository: localhost:5000//user-service
+    repository: localhost:5000/user-service
     tag: "latest"
   service:
     type: ClusterIP
@@ -34,7 +34,7 @@ user-service:
 public-event-service:
   replicaCount: 2
   image:
-    repository: localhost:5000//public-event-service
+    repository: localhost:5000/public-event-service
     tag: "latest"
   service:
     type: ClusterIP
@@ -43,7 +43,7 @@ public-event-service:
 admin-event-service:
   replicaCount: 2
   image:
-    repository: localhost:5000//admin-event-service
+    repository: localhost:5000/admin-event-service
     tag: "latest"
   service:
     type: ClusterIP
@@ -52,7 +52,7 @@ admin-event-service:
 booking-service:
   replicaCount: 2
   image:
-    repository: localhost:5000//booking-service
+    repository: localhost:5000/booking-service
     tag: "latest"
   service:
     type: ClusterIP
@@ -61,7 +61,7 @@ booking-service:
 ticketing-service:
   replicaCount: 2
   image:
-    repository: localhost:5000//ticketing-service
+    repository: localhost:5000/ticketing-service
     tag: "latest"
   service:
     type: ClusterIP
@@ -70,7 +70,7 @@ ticketing-service:
 payment-service:
   replicaCount: 1
   image:
-    repository: localhost:5000//payment-service
+    repository: localhost:5000/payment-service
     tag: "latest"
   service:
     type: ClusterIP
@@ -79,7 +79,7 @@ payment-service:
 notification-service:
   replicaCount: 2
   image:
-    repository: localhost:5000//notification-service
+    repository: localhost:5000/notification-service
     tag: "latest"
   service:
     type: ClusterIP
@@ -88,7 +88,7 @@ notification-service:
 analytics-service:
   replicaCount: 1
   image:
-    repository: localhost:5000//analytics-service
+    repository: localhost:5000/analytics-service
     tag: "latest"
   service:
     type: ClusterIP
