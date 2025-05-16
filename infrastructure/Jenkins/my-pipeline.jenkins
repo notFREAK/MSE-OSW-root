@@ -64,19 +64,13 @@ pipeline {
           script {
             // Поднимаем StatefulSet'ы для БД отдельно
             def postgresql = "helm upgrade --install postgresql ${HELM_CHART_PATH}/charts/postgresql " +
-              "--namespace ${KUBE_NAMESPACE} " +
-              "--set image.tag=${APP_VERSION} " +
-              "--wait --timeout 5m --atomic"
+              "--namespace ${KUBE_NAMESPACE} "
 
             def mongodb = "helm upgrade --install mongodb ${HELM_CHART_PATH}/charts/mongodb " +
-              "--namespace ${KUBE_NAMESPACE} " +
-              "--set image.tag=${APP_VERSION} " +
-              "--wait --timeout 5m --atomic"
+              "--namespace ${KUBE_NAMESPACE} " 
 
             def redis = "helm upgrade --install redis ${HELM_CHART_PATH}/charts/redis " +
-              "--namespace ${KUBE_NAMESPACE} " +
-              "--set image.tag=${APP_VERSION} " +
-              "--wait --timeout 5m --atomic"
+              "--namespace ${KUBE_NAMESPACE} " 
 
             bat postgresql
             bat mongodb

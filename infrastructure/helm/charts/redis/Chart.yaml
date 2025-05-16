@@ -3,3 +3,8 @@ name: redis
 description: Stateful Redis for caching and recommendations
 version: 0.1.0
 appVersion: "6.2"
+dependencies:
+  - name: redis
+    version: 14
+    repository: https://charts.bitnami.com/bitnami
+
