@@ -1,0 +1,13 @@
+replicaCount: 1
+
+image:
+  repository: redis
+  tag: "6.2"
+  pullPolicy: IfNotPresent
+
+service:
+  port: 6379
+
+persistence:
+  storageClass: "standard"
+  size: 5Gi

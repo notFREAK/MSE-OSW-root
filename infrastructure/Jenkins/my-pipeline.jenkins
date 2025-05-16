@@ -66,7 +66,7 @@ pipeline {
             def modules = [
               "gateway-service","auth-service","user-service",
               "public-event-service","admin-event-service","booking-service",
-              "ticketing-service","payment-service","notification-service","analytics-service"
+              "ticketing-service","payment-service","notification-service","analytics-service", "postgresql", "mongodb", "redis"
             ]
             def setArgs = modules.collect { "--set ${it}.image.tag=${APP_VERSION}" }.join(' ')
             def helmCmd = "helm upgrade --install my-microservices " +

@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "postgresql.fullname" . }}-migrate
+  annotations:
+    "helm.sh/hook": pre-install,pre-upgrade
+spec:
+  template:
+    spec:
+      containers:
+        - name: flyway
+          image: flyway/flyway:8.5
+          args:
+            - -url=jdbc:postgresql://{{ include "postgresql.fullname" . }}:{{ .Values.service.port }}/mydb
+            - -schemas=public
+            - -user={{ .Values.postgresUser }}
+            - -password={{ .Values.postgresPassword }}
+            - migrate
+      restartPolicy: OnFailure
