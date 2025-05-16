@@ -2,7 +2,4 @@ apiVersion: v2
 name: postgresql
 description: Stateful PostgreSQL cluster for multiple databases
 version: 0.1.0
-appVersion: "1.0.0"
-dependencies:
-  - name: postgresql
-    version: 1.0.0
+appVersion: "14"
