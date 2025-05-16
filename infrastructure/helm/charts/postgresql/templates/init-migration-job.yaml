@@ -4,6 +4,7 @@ metadata:
   name: {{ include "postgresql.fullname" . }}-migrate
   annotations:
     "helm.sh/hook": pre-install,pre-upgrade
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
 spec:
   template:
     spec:
