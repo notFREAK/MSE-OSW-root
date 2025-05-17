@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "mongodb.fullname" . }}-init-db
+  annotations:
+    helm.sh/hook: post-install,pre-upgrade
+    helm.sh/hook-delete-policy: hook-succeeded,before-hook-creation
+spec:
+  backoffLimit: 10
+  template:
+    spec:
+      restartPolicy: OnFailure
+      volumes:
+        - name: init-scripts
+          configMap:
+            name: {{ include "mongodb.fullname" . }}-init-scripts
+      containers:
+        - name: init-mongo
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          command: ["mongo"]
+          args:
+            - "--host"
+            - "{{ include "mongodb.fullname" . }}"
+            - "/init-scripts/01-create-dbs.js"
+          volumeMounts:
+            - name: init-scripts
+              mountPath: /init-scripts

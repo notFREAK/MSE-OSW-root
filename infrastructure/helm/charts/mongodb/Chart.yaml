@@ -2,5 +2,5 @@ apiVersion: v2
 name: mongodb
 description: Stateful MongoDB with multiple databases
 version: 0.1.0
-appVersion: "5.0"
+appVersion: "4.4.6"
 

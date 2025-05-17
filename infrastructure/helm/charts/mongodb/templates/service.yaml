@@ -1,10 +1,17 @@
 apiVersion: v1
-kind: ConfigMap
+kind: Service
 metadata:
-  name: mongodb-init-scripts
-data:
-  01-create-dbs.js: |
-    db = db.getSiblingDB('events');
-    db.createCollection('public_events');
-    db = db.getSiblingDB('contents');
-    db.createCollection('media');
+  name: {{ include "mongodb.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "mongodb.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.port }}
+      protocol: TCP
+      name: mongodb
+  selector:
+    app.kubernetes.io/name: {{ include "mongodb.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
