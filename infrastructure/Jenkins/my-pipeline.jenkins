@@ -100,9 +100,7 @@ pipeline {
                           "${HELM_CHART_PATH} " +
                           "--namespace ${KUBE_NAMESPACE} " +
                           "--set global.eureka.defaultZone=\"http://eureka-server:8761/eureka/\" " +
-                          "${setArgs} " +
-                          "${setDB} "  +
-                          "--wait --timeout 5m --atomic"
+                          "${setArgs} "
             bat helmCmd
           }
         }
