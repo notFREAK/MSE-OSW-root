@@ -3,9 +3,4 @@ name: mongodb
 description: Stateful MongoDB with multiple databases
 version: 0.1.0
 appVersion: "5.0"
-dependencies:
-  - name: mongodb
-    version: 14
-    repository: https://charts.bitnami.com/bitnami
-
 

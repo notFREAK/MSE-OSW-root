@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "postgresql.fullname" . }}-migration-scripts
+data:
+  01-create-databases.sql: |
+    -- Создание отдельных баз данных для сервисов
+    CREATE DATABASE userdb;
+    CREATE DATABASE bookingdb;
+    CREATE DATABASE analyticsdb;
+    CREATE DATABASE notificationdb;

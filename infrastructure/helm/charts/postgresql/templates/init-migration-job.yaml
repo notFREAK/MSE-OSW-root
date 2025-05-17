@@ -1,20 +1,37 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ include "postgresql.fullname" . }}-migrate
+  name: {{ include "postgresql.fullname" . }}-init-db
   annotations:
-    "helm.sh/hook": post-install,pre-upgrade
+    # Переключаемся на post-install, чтобы СУБД и Service уже были готовы
+    "helm.sh/hook": post-install,post-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
 spec:
+  backoffLimit: 3
   template:
+    metadata:
+      labels:
+        job: {{ include "postgresql.fullname" . }}-init-db
     spec:
-      containers:
-        - name: flyway
-          image: flyway/flyway:8.5
-          args:
-            - -url=jdbc:postgresql://{{ include "postgresql.fullname" . }}:{{ .Values.service.port }}/mydb
-            - -schemas=public
-            - -user={{ .Values.postgresUser }}
-            - -password={{ .Values.postgresPassword }}
-            - migrate
       restartPolicy: OnFailure
+      volumes:
+        - name: migration-scripts
+          configMap:
+            name: {{ include "postgresql.fullname" . }}-migration-scripts
+      containers:
+        - name: init-postgres
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: PGPASSWORD
+              value: {{ .Values.postgresPassword }}
+          command: ["psql"]
+          args:
+            ["-v", "ON_ERROR_STOP=1",
+             "--username", "{{ .Values.postgresUser }}",
+             "--host", "{{ include "postgresql.fullname" . }}",
+             "--port", "{{ .Values.service.port }}",
+             "-f", "/migration-scripts/01-create-databases.sql"]
+          volumeMounts:
+            - name: migration-scripts
+              mountPath: /migration-scripts
