@@ -3,7 +3,3 @@ name: postgresql
 description: Stateful PostgreSQL cluster for multiple databases
 version: 0.1.0
 appVersion: "14"
-dependencies:
-  - name: postgresql
-    version: 14
-    repository: https://charts.bitnami.com/bitnami
