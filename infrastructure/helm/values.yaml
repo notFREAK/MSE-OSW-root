@@ -93,31 +93,3 @@ analytics-service:
   service:
     type: ClusterIP
     port: 8086
-
-postgresql:
-  replicaCount: 1
-  image:
-    repository: postgres
-    tag: "14"
-  service:
-    type: ClusterIP
-    port: 5432
-
-
-mongodb:
-  replicaCount: 1
-  image:
-    repository: mongo
-    tag: "latest"
-  service:
-    type: ClusterIP
-    port: 27017   
-
-redis:
-  replicaCount: 1
-  image:
-    repository: redis
-    tag: "latest"
-  service:
-    type: ClusterIP
-    port: 6379  

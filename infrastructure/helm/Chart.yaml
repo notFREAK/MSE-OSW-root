@@ -35,12 +35,3 @@ dependencies:
   - name: analytics-service
     version: 0.1.0
     repository: file://charts/analytics-service
-  - name: postgresql
-    version: 0.1.0
-    repository: file://charts/postgresql
-  - name: mongodb
-    version: 0.1.0
-    repository: file://charts/mongodb
-  - name: redis 
-    version: 0.1.0
-    repository: file://charts/redis
