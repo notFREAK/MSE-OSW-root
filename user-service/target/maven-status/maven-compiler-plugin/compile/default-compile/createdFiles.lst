@@ -1,5 +1,0 @@
-com\example\user\model\User.class
-com\example\user\service\UserService.class
-com\example\user\UserManagementServiceApplication.class
-com\example\user\controller\UserController.class
-com\example\user\repository\UserRepository.class
